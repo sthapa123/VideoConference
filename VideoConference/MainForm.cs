@@ -9,9 +9,12 @@ using System.Windows.Forms;
 
 namespace VideoConference
 {
-    public partial class Form1 : Form
+    /// <summary>
+    /// Главное окно программы
+    /// </summary>
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }

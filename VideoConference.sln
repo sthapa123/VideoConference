@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConference", "VideoConference\VideoConference.csproj", "{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceGui", "VideoConference\VideoConferenceGui.csproj", "{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
