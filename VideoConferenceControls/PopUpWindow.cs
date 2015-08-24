@@ -17,7 +17,16 @@ namespace VideoConferenceControls
             set { panelChoiseObject1.DataSource = value; }
         }
 
-        private void PopUpWindow_Leave(object sender, EventArgs e)
+        
+        private void PopUpWindow_Load(object sender, EventArgs e)
+        {
+            if (panelChoiseObject1.RowCount > 0)
+                this.Height = panelChoiseObject1.RowHeight * panelChoiseObject1.RowCount;
+            else
+                this.Height = Constants.PopUpWindowDefaultHeight;
+        }
+
+        private void PopUpWindow_Deactivate(object sender, EventArgs e)
         {
             this.Close();
             this.Dispose();

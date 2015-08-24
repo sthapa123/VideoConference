@@ -1,4 +1,6 @@
-﻿namespace VideoConference
+﻿using VideoConferenceControls;
+
+namespace VideoConference
 {
     partial class MainForm
     {
@@ -28,9 +30,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.buttonsPanel1 = new VideoConferenceControls.MainButtonsPanel();
             this.videoScreen1 = new VideoConferenceControls.VideoScreen();
-            this.buttonsPanel1 = new VideoConferenceControls.ButtonsPanel();
             this.SuspendLayout();
+            // 
+            // buttonsPanel1
+            // 
+            this.buttonsPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonsPanel1.Button1.Text = Constants.StartCamera;
+            this.buttonsPanel1.Button2.Text = Constants.Customizations;
+            this.buttonsPanel1.Button3.Visible = false;
+            this.buttonsPanel1.Button4.Visible = false;
+            this.buttonsPanel1.Button5.Visible = false;
+            this.buttonsPanel1.Button6.Visible = false;
+            this.buttonsPanel1.Caption = "Главное меню";
+            this.buttonsPanel1.Location = new System.Drawing.Point(408, 2);
+            this.buttonsPanel1.MaximumSize = new System.Drawing.Size(100, 0);
+            this.buttonsPanel1.MinimumSize = new System.Drawing.Size(100, 300);
+            this.buttonsPanel1.Name = "buttonsPanel1";
+            this.buttonsPanel1.Size = new System.Drawing.Size(100, 300);
+            this.buttonsPanel1.TabIndex = 1;
             // 
             // videoScreen1
             // 
@@ -42,17 +62,6 @@
             this.videoScreen1.Name = "videoScreen1";
             this.videoScreen1.Size = new System.Drawing.Size(400, 300);
             this.videoScreen1.TabIndex = 0;
-            // 
-            // buttonsPanel1
-            // 
-            this.buttonsPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonsPanel1.Location = new System.Drawing.Point(408, 2);
-            this.buttonsPanel1.MaximumSize = new System.Drawing.Size(100, 0);
-            this.buttonsPanel1.MinimumSize = new System.Drawing.Size(100, 300);
-            this.buttonsPanel1.Name = "buttonsPanel1";
-            this.buttonsPanel1.Size = new System.Drawing.Size(100, 300);
-            this.buttonsPanel1.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -71,7 +80,7 @@
         #endregion
 
         private VideoConferenceControls.VideoScreen videoScreen1;
-        private VideoConferenceControls.ButtonsPanel buttonsPanel1;
+        private VideoConferenceControls.MainButtonsPanel buttonsPanel1;
 
 
 

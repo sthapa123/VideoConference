@@ -1,6 +1,6 @@
 ﻿namespace VideoConferenceControls
 {
-    partial class ButtonsPanel
+    partial class ComboBoxThisCaption
     {
         /// <summary> 
         /// Требуется переменная конструктора.
@@ -28,46 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnChoiseDevice = new System.Windows.Forms.Button();
-            this.btnResolution = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // btnChoiseDevice
+            // label1
             // 
-            this.btnChoiseDevice.Location = new System.Drawing.Point(4, 4);
-            this.btnChoiseDevice.Name = "btnChoiseDevice";
-            this.btnChoiseDevice.Size = new System.Drawing.Size(93, 40);
-            this.btnChoiseDevice.TabIndex = 0;
-            this.btnChoiseDevice.Text = "Выбор устройства";
-            this.btnChoiseDevice.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
-            // btnResolution
+            // comboBox1
             // 
-            this.btnResolution.Location = new System.Drawing.Point(4, 50);
-            this.btnResolution.Name = "btnResolution";
-            this.btnResolution.Size = new System.Drawing.Size(93, 40);
-            this.btnResolution.TabIndex = 1;
-            this.btnResolution.Text = "Разрешение";
-            this.btnResolution.UseVisualStyleBackColor = true;
-            this.btnResolution.Click += new System.EventHandler(this.btnResolution_Click);
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(7, 21);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(140, 21);
+            this.comboBox1.TabIndex = 1;
             // 
-            // ButtonsPanel
+            // ComboBoxThisCaption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnResolution);
-            this.Controls.Add(this.btnChoiseDevice);
-            this.MaximumSize = new System.Drawing.Size(100, 0);
-            this.MinimumSize = new System.Drawing.Size(100, 300);
-            this.Name = "ButtonsPanel";
-            this.Size = new System.Drawing.Size(100, 300);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label1);
+            this.Name = "ComboBoxThisCaption";
+            this.Size = new System.Drawing.Size(153, 46);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnChoiseDevice;
-        private System.Windows.Forms.Button btnResolution;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

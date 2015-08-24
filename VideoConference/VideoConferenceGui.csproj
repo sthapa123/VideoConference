@@ -34,10 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL" />
-    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL" />
-    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b" />
-    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -87,6 +83,10 @@
     <ProjectReference Include="..\VideoConferenceControls\VideoConferenceControls.csproj">
       <Project>{E5B4538F-B728-4952-841C-BF7190F869CA}</Project>
       <Name>VideoConferenceControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceLocalLogic\VideoConferenceLocalLogic.csproj">
+      <Project>{7D669466-A835-431E-94FF-E62A18724FB6}</Project>
+      <Name>VideoConferenceLocalLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -52,7 +52,6 @@
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "VideoScreen";
             this.Size = new System.Drawing.Size(400, 300);
-            this.Resize += new System.EventHandler(this.VideoScreen_Resize);
             this.ResumeLayout(false);
 
         }

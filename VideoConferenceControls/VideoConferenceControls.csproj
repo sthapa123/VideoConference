@@ -60,11 +60,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonsPanel.cs">
+    <Compile Include="MainButtonsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ButtonsPanel.Designer.cs">
-      <DependentUpon>ButtonsPanel.cs</DependentUpon>
+    <Compile Include="MainButtonsPanel.Designer.cs">
+      <DependentUpon>MainButtonsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComboBoxThisCaption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComboBoxThisCaption.Designer.cs">
+      <DependentUpon>ComboBoxThisCaption.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="PanelChoiseObject.cs">
@@ -88,8 +94,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ButtonsPanel.resx">
-      <DependentUpon>ButtonsPanel.cs</DependentUpon>
+    <EmbeddedResource Include="MainButtonsPanel.resx">
+      <DependentUpon>MainButtonsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComboBoxThisCaption.resx">
+      <DependentUpon>ComboBoxThisCaption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelChoiseObject.resx">
       <DependentUpon>PanelChoiseObject.cs</DependentUpon>

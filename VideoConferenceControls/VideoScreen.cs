@@ -15,12 +15,5 @@ namespace VideoConferenceControls
         {
             InitializeComponent();
         }
-
-
-        void VideoScreen_Resize(object sender, System.EventArgs e)
-        {
-            this.Height = (int)(0.75 * this.Width);
-        }
-
     }
 }

@@ -4,6 +4,12 @@ namespace VideoConferenceControls
 {
     public class Constants
     {
+        public const string StartCamera = "Включить камеру";
+
+        public const string Customizations = "Настройки";
+
+        public const int PopUpWindowDefaultHeight = 50;
+
         /// <summary>Расширение 640х480</summary>
         public static string Resolution640 = "640x480";
 
