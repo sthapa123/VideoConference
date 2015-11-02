@@ -84,9 +84,9 @@
       <Project>{E5B4538F-B728-4952-841C-BF7190F869CA}</Project>
       <Name>VideoConferenceControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VideoConferenceLocalLogic\VideoConferenceLocalLogic.csproj">
-      <Project>{7D669466-A835-431E-94FF-E62A18724FB6}</Project>
-      <Name>VideoConferenceLocalLogic</Name>
+    <ProjectReference Include="..\VideoConferenceUtils\VideoConferenceUtils.csproj">
+      <Project>{B7DA3CAC-1E2E-4EFC-8BF1-E41157507FC4}</Project>
+      <Name>VideoConferenceUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
