@@ -1,13 +1,10 @@
 ﻿using System;
 using System.IO;
-using VideoConferenceUtils.Interfaces;
 
 namespace VideoConferenceUtils
 {
     static class FileHelper
     {
-        static ILogHelper log = new LogHelper("FileHelper");
-        
         /// <summary>
         /// Удаляет указанный файл
         /// </summary>
@@ -26,7 +23,7 @@ namespace VideoConferenceUtils
             }
             catch(Exception ex)
             {
-                log.ErrorFormat("Не удалось создать экземпляр класса: {0}", ex);
+                //log.ErrorFormat("Не удалось создать экземпляр класса: {0}", ex);
                 return false;
             }
         }

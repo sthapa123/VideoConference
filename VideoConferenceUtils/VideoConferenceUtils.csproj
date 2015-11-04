@@ -42,8 +42,6 @@
   <ItemGroup>
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="FileHelper.cs" />
-    <Compile Include="Interfaces\ILogHelper.cs" />
-    <Compile Include="LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +49,9 @@
       <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
       <Name>VideoConferenceCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

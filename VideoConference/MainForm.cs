@@ -1,6 +1,4 @@
 ﻿using System.Windows.Forms;
-using VideoConferenceUtils;
-using VideoConferenceUtils.Interfaces;
 
 namespace VideoConference
 {
@@ -9,12 +7,14 @@ namespace VideoConference
     /// </summary>
     public partial class MainForm : Form
     {
-        //ILogHelper log = new LogHelper("MainForm");
+        #region Логгирование
+        
+        #endregion
 
         public MainForm()
         {
             InitializeComponent();
-            //log.Info("Конструктор");
+            //log.Info("First_test");
         }
     }
 }
