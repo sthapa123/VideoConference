@@ -18,7 +18,8 @@ namespace VideoConference
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (log.IsInfoEnabled) log.Info("Application start");
+            if (log.IsInfoEnabled)
+                log.Info("//-----------------------Application start-----------------------//");
             Application.Run(new MainForm());        
         }
     }

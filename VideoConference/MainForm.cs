@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using VideoConferenceUtils;
 
 namespace VideoConference
 {
@@ -14,6 +15,7 @@ namespace VideoConference
         public MainForm()
         {
             InitializeComponent();
+            FileHelper.RemoveFile("615616.txt");
             //log.Info("First_test");
         }
     }

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.IO;
+using NLog;
 
 namespace VideoConferenceUtils
 {
-    static class FileHelper
+    public static class FileHelper
     {
+        #region Логгирование
+        private static Logger _log = LogManager.GetCurrentClassLogger();
+        #endregion
+
         /// <summary>
         /// Удаляет указанный файл
         /// </summary>
@@ -17,13 +22,11 @@ namespace VideoConferenceUtils
             try
             {
                 File.Delete(fileFullName);
-                if (File.Exists(fileFullName))
-                    return true;
-                return false;
+                return File.Exists(fileFullName);
             }
             catch(Exception ex)
             {
-                //log.ErrorFormat("Не удалось создать экземпляр класса: {0}", ex);
+                _log.Error(ex, "RemoveFile. Не удалось удалить файл {0}", fileFullName);
                 return false;
             }
         }
