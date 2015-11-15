@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("VideoConference")]
+[assembly: AssemblyTitle("VideoConferenceObjects")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("VideoConference")]
+[assembly: AssemblyProduct("VideoConferenceObjects")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("7c6dd928-cd36-48a2-8ff8-6a6b68aff1c6")]
+[assembly: Guid("f19b92c8-3b51-46d6-8826-fec6deb4a862")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

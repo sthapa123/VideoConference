@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace VideoConferenceControls
+﻿namespace VideoConferenceControls
 {
     public class Constants
     {
