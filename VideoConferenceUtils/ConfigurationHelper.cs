@@ -6,7 +6,7 @@ namespace VideoConferenceUtils
     /// <summary>
     /// Класс для работы с файлом конфигурации
     /// </summary>
-    public class ConfigurationHelper
+    public static class ConfigurationHelper
     {
         /// <summary>
         /// Возвращает целочисленное значение из конфигурационного файла

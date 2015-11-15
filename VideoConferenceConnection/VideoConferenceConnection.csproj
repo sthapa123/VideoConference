@@ -39,6 +39,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,7 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
+    <Compile Include="ConnectConfiguration.cs" />
+    <Compile Include="ContentReceiver.cs" />
+    <Compile Include="ContentSender.cs" />
+    <Compile Include="IP2PService.cs" />
+    <Compile Include="P2PService.cs" />
+    <Compile Include="Peer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
