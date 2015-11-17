@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceGui", "VideoConference\VideoConferenceGui.csproj", "{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceControls", "VideoConferenceControls\VideoConferenceControls.csproj", "{E5B4538F-B728-4952-841C-BF7190F869CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceConnection", "VideoConferenceConnection\VideoConferenceConnection.csproj", "{2EF8A286-D29C-455A-BD87-0EE730FB1757}"
@@ -17,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceForms", "Vid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceObjects", "VideoConferenceObjects\VideoConferenceObjects.csproj", "{C96851CC-07ED-4732-AE4F-3130706217DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceInitializer", "VideoConferenceInitializer\VideoConferenceInitializer.csproj", "{8EA9185D-F660-48E0-B284-F7E25F46A5DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConferenceGui", "VideoConferenceGui\VideoConferenceGui.csproj", "{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,16 +29,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Debug|x86.ActiveCfg = Debug|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Debug|x86.Build.0 = Debug|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Release|Any CPU.ActiveCfg = Release|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Release|Mixed Platforms.Build.0 = Release|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Release|x86.ActiveCfg = Release|x86
-		{594F0F51-6C01-4E81-88FD-6C8F692BDB7E}.Release|x86.Build.0 = Release|x86
 		{E5B4538F-B728-4952-841C-BF7190F869CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E5B4538F-B728-4952-841C-BF7190F869CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5B4538F-B728-4952-841C-BF7190F869CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -107,6 +99,26 @@ Global
 		{C96851CC-07ED-4732-AE4F-3130706217DA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C96851CC-07ED-4732-AE4F-3130706217DA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C96851CC-07ED-4732-AE4F-3130706217DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Debug|x86.ActiveCfg = Debug|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Debug|x86.Build.0 = Debug|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Release|Any CPU.ActiveCfg = Release|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Release|x86.ActiveCfg = Release|x86
+		{8EA9185D-F660-48E0-B284-F7E25F46A5DF}.Release|x86.Build.0 = Release|x86
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

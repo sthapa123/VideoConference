@@ -76,7 +76,6 @@
     <Compile Include="ComboBoxThisCaption.Designer.cs">
       <DependentUpon>ComboBoxThisCaption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Constants.cs" />
     <Compile Include="PanelChoiseObject.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VideoConferenceResources\VideoConferenceResources.csproj">
+      <Project>{2089927D-9EAB-4A6A-A83B-DFE11FA99E08}</Project>
+      <Name>VideoConferenceResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

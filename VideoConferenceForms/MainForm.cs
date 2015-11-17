@@ -2,33 +2,35 @@
 using System.Net.Configuration;
 using System.Windows.Forms;
 using NLog;
+using VideoConference.Interfaces;
 using VideoConferenceConnection;
+using VideoConferenceGui.FormsLogic;
 
 namespace VideoConference
 {
     /// <summary>
     /// Главное окно программы
     /// </summary>
-    public partial class MainForm : Form
+    public partial class MainForm : Form , IMainForm
     {
         #region Логгирование
         private static Logger log = LogManager.GetCurrentClassLogger();
         #endregion
 
-        private ConnectConfiguration con;
-
+        private MainFormPresenter _presenter;
+        
         public MainForm()
         {
             InitializeComponent();
+            _presenter = new MainFormPresenter(this);
         }
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             try
             {
-                var receiver = new ContentReceiver(textBox1);
-                con = new ConnectConfiguration(receiver);
-                button1.Text = con._userName;
+                ConnectConfiguration con = new ConnectConfiguration(new ContentReceiver());
+                
             }
             catch (Exception ex)
             {
@@ -39,14 +41,12 @@ namespace VideoConference
 
         private void button1_Click(object sender, EventArgs e)
         {
-            con.ReloadPeers();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            con.SendMessage(textBox2.Text);
-            textBox1.Text += "\n " + sender + ": " + textBox2.Text;
-            textBox2.Clear();
+            
         }
     }
 }

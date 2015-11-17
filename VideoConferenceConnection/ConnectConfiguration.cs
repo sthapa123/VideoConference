@@ -15,7 +15,9 @@ namespace VideoConferenceConnection
     public class ConnectConfiguration : IDisposable
     {
         #region Логгирование
+
         private static Logger log = LogManager.GetCurrentClassLogger();
+
         #endregion
 
         private P2PService localService;
@@ -28,7 +30,7 @@ namespace VideoConferenceConnection
         private PeerNameRegistration peerNameRegistration;
         private List<Peer> _peerList;
         private ContentReceiver _receiver;
-        
+
         public ConnectConfiguration(ContentReceiver receiver)
             : this(ConfigurationHelper.GetAppConfigurationString("username", String.Empty), receiver)
         {
@@ -41,15 +43,15 @@ namespace VideoConferenceConnection
 
         public ConnectConfiguration(string userName, int port, ContentReceiver receiver)
         {
+            //todo если порт занят, попробовать другой порт
             if (String.IsNullOrEmpty(userName) || port == 0)
             {
                 var message = "Некорректный логин/порт";
                 log.Error(message);
                 //todo Возможно стоит придумать собвственное исключение
                 throw new Exception(message);
-                
             }
-            
+
             _userName = userName;
             _port = port;
             _machineName = Environment.MachineName;
@@ -68,7 +70,7 @@ namespace VideoConferenceConnection
             host = new ServiceHost(localService, new Uri(serviceUrl));
             NetTcpBinding binding = new NetTcpBinding();
             binding.Security.Mode = SecurityMode.None;
-            host.AddServiceEndpoint(typeof(IP2PService), binding, serviceUrl);
+            host.AddServiceEndpoint(typeof (IP2PService), binding, serviceUrl);
 
             host.Open();
 

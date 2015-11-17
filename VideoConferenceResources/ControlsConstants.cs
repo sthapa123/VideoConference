@@ -1,7 +1,12 @@
-﻿namespace VideoConferenceControls
+﻿namespace VideoConferenceResources
 {
-    public class Constants
+    public class ControlsConstants
     {
+        #region Splash
+
+        public const string SplashInicialization = "Инициализация";
+        #endregion
+
         public const string StartCamera = "Включить камеру";
 
         public const string Customizations = "Настройки";
