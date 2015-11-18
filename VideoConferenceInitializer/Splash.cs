@@ -24,20 +24,12 @@ namespace VideoConferenceInitializer
 
         private void Splash_Load(object sender, EventArgs e)
         {
-            statusLabel.Text = ControlsConstants.SplashInicialization;
-            var initializer = new Initializer();
+            
+        }
 
-            try
-            {
-                log.Info("asdasd");
-                var result = initializer.Initialize();
-                throw new Exception("Тест");
-            }
-            catch (Exception ex)
-            {
-                log.Fatal(ex, "Splash_Load. Ошибка во время инициализации! Приложение не может быть запущено.");
-                //Application.Exit();
-            }
+        public string StatusText
+        {
+            set { statusLabel.Text = value; }
         }
     }
 }

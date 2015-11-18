@@ -27,16 +27,7 @@ namespace VideoConference
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
-            try
-            {
-                ConnectConfiguration con = new ConnectConfiguration(new ContentReceiver());
-                
-            }
-            catch (Exception ex)
-            {
-                log.Error("MainForm_Load. Ошибка при начальной загрузке", ex);
-                Application.Exit();
-            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

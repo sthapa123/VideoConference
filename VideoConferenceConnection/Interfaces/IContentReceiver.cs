@@ -4,7 +4,7 @@ using System.ServiceModel;
 namespace VideoConferenceConnection
 {
     [ServiceContract]
-    public interface IP2PService
+    public interface IContentReceiver
     {
         [OperationContract]
         string GetName();

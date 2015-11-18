@@ -85,6 +85,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VideoConferenceConnection\VideoConferenceConnection.csproj">
+      <Project>{2EF8A286-D29C-455A-BD87-0EE730FB1757}</Project>
+      <Name>VideoConferenceConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceForms\VideoConferenceForms.csproj">
+      <Project>{A72A9975-E467-4516-AAD3-F93C697672D7}</Project>
+      <Name>VideoConferenceForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceGui\VideoConferenceGui.csproj">
+      <Project>{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}</Project>
+      <Name>VideoConferenceGui</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VideoConferenceResources\VideoConferenceResources.csproj">
       <Project>{2089927D-9EAB-4A6A-A83B-DFE11FA99E08}</Project>
       <Name>VideoConferenceResources</Name>

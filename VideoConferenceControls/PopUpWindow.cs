@@ -20,10 +20,10 @@ namespace VideoConferenceControls
         
         private void PopUpWindow_Load(object sender, EventArgs e)
         {
-            if (panelChoiseObject1.RowCount > 0)
-                this.Height = panelChoiseObject1.RowHeight * panelChoiseObject1.RowCount;
-            else
-                this.Height = Constants.PopUpWindowDefaultHeight;
+            //if (panelChoiseObject1.RowCount > 0)
+            //    this.Height = panelChoiseObject1.RowHeight * panelChoiseObject1.RowCount;
+            //else
+            //    this.Height = Constants.PopUpWindowDefaultHeight;
         }
 
         private void PopUpWindow_Deactivate(object sender, EventArgs e)

@@ -1,17 +1,30 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+
 namespace VideoConferenceConnection
 {
     /// <summary>
-    /// Приёмник информации
+    /// WCF сервис
     /// </summary>
-    public class ContentReceiver
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    public class ContentReceiver : IContentReceiver
     {
-        public ContentReceiver()
-        {
+        private string _username;
 
+        public ContentReceiver(string username)
+        {
+            _username = username;
         }
 
-        public void DisplayMessage(string sender, string message)
+        public string GetName()
+        {
+            return _username;
+        }
+
+        public void SendMessage(string message, string from)
         {
             
         }

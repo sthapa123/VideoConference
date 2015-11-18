@@ -47,14 +47,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectConfiguration.cs" />
-    <Compile Include="ContentReceiver.cs" />
     <Compile Include="ContentSender.cs" />
-    <Compile Include="Interfaces\IP2PService.cs" />
-    <Compile Include="P2PService.cs" />
+    <Compile Include="Interfaces\IContentReceiver.cs" />
+    <Compile Include="ContentReceiver.cs" />
     <Compile Include="Peer.cs" />
+    <Compile Include="PeersResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiverServiceHost.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VideoConferenceResources\VideoConferenceResources.csproj">
+      <Project>{2089927D-9EAB-4A6A-A83B-DFE11FA99E08}</Project>
+      <Name>VideoConferenceResources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VideoConferenceUtils\VideoConferenceUtils.csproj">
       <Project>{B7DA3CAC-1E2E-4EFC-8BF1-E41157507FC4}</Project>
       <Name>VideoConferenceUtils</Name>

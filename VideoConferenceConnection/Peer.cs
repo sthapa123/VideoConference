@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using System.Net.PeerToPeer;
 
 namespace VideoConferenceConnection
 {
-    class Peer
+    /// <summary>
+    /// Класс, представляющий пользователя
+    /// </summary>
+    public class Peer
     {
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
         public PeerName PeerName { get; set; }
-        public IP2PService ServiceProxy { get; set; }
-        public string DisplayString { get; set; }
+
+        /// <summary>
+        /// Приёмник информации
+        /// </summary>
+        public IContentReceiver ContentReceiver { get; set; }
     }
 }

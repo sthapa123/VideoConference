@@ -12,12 +12,22 @@ namespace VideoConferenceInitializer
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Splash());
+
+            var splash = new Splash();
+            splash.Shown += splash_Shown;
+
+            Application.Run(splash);
+        }
+
+        private static void splash_Shown(object sender, EventArgs e)
+        {
+            var initializer = new Initializer((Splash)sender);
+            initializer.Initialize();
         }
     }
 }
