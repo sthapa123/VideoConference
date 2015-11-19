@@ -8,7 +8,7 @@ namespace VideoConferenceResources
     /// <summary>
     /// Константы подключения
     /// </summary>
-    public class ConnectionConstants
+    public static class ConnectionConstants
     {
         public const string MainPeerName = "VideoConference";
     }

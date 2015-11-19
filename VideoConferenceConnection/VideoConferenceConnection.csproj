@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\IContentReceiver.cs" />
     <Compile Include="ContentReceiver.cs" />
     <Compile Include="Peer.cs" />
+    <Compile Include="PeerRegistration.cs" />
     <Compile Include="PeersResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverServiceHost.cs" />

@@ -15,8 +15,6 @@ namespace VideoConferenceConnection
     /// </summary>
     public static class ConnectConfiguration
     {
-        private static readonly PeerName PeerName = new PeerName(ConnectionConstants.MainPeerName, PeerNameType.Unsecured);
-
         /// <summary>
         /// Имя машины
         /// </summary>
@@ -39,11 +37,6 @@ namespace VideoConferenceConnection
         public static int Port
         {
             get { return ConfigurationHelper.GetAppConfigurationInt("port", 0); }
-        }
-
-        public static PeerName MainPeerName
-        {
-            get { return PeerName; }
         }
     }
 }

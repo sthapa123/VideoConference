@@ -36,16 +36,18 @@ namespace VideoConferenceInitializer
 
             _splashForm.StatusText = "Загрузка сервиса подключения";
             var receiver = new ContentReceiver(ConnectConfiguration.UserName);
+            _splashForm.StatusText = "Регистрация служб";
             var host = new ReceiverServiceHost(receiver);
-
-
+            host.HostOpen();
+            _splashForm.StatusText = "Регистрация в локальном облаке";
+            var registrator = new PeerRegistration(host.Port);
+            registrator.StartRegistration();
             var resolver = new PeersResolver();
 
             _splashForm.StatusText = "Загрузка формы";
             _mainForm = new MainForm();
             _splashForm.Hide();
             _mainForm.Show();
-
             return true;
         }
     }
