@@ -54,6 +54,16 @@
   <ItemGroup>
     <Folder Include="ControlsLogic\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VideoConferenceConnection\VideoConferenceConnection.csproj">
+      <Project>{2EF8A286-D29C-455A-BD87-0EE730FB1757}</Project>
+      <Name>VideoConferenceConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceUtils\VideoConferenceUtils.csproj">
+      <Project>{B7DA3CAC-1E2E-4EFC-8BF1-E41157507FC4}</Project>
+      <Name>VideoConferenceUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

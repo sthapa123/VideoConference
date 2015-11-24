@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.Text;
+using VideoConferenceConnection.Interfaces;
 
 namespace VideoConferenceConnection
 {
@@ -13,10 +11,16 @@ namespace VideoConferenceConnection
     public class ContentReceiver : IContentReceiver
     {
         private string _username;
+        private static IContentReceiver _receiver;
 
-        public ContentReceiver(string username)
+        private ContentReceiver()
         {
-            _username = username;
+            _username = ConnectConfiguration.UserName;
+        }
+
+        public static IContentReceiver Instance
+        {
+            get { return _receiver ?? (_receiver = new ContentReceiver()); }
         }
 
         public string GetName()

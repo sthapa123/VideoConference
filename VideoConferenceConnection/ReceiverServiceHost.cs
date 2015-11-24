@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.PeerToPeer;
 using System.ServiceModel;
 using System.Text;
+using VideoConferenceConnection.Interfaces;
 using VideoConferenceResources;
 
 namespace VideoConferenceConnection
@@ -16,7 +17,7 @@ namespace VideoConferenceConnection
         private ServiceHost _host;
         private int _port;
 
-        public ReceiverServiceHost(ContentReceiver receiver)
+        public ReceiverServiceHost(IContentReceiver receiver)
         {
             _port = ConnectConfiguration.Port;
 

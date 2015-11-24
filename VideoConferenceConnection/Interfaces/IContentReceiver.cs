@@ -1,7 +1,6 @@
-﻿
-using System.ServiceModel;
+﻿using System.ServiceModel;
 
-namespace VideoConferenceConnection
+namespace VideoConferenceConnection.Interfaces
 {
     [ServiceContract]
     public interface IContentReceiver

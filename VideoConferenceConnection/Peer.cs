@@ -1,5 +1,6 @@
 ﻿
 using System.Net.PeerToPeer;
+using VideoConferenceConnection.Interfaces;
 
 namespace VideoConferenceConnection
 {
@@ -9,7 +10,7 @@ namespace VideoConferenceConnection
     public class Peer
     {
         /// <summary>
-        /// Имя пользователя
+        /// Имя пира
         /// </summary>
         public PeerName PeerName { get; set; }
 
@@ -17,5 +18,9 @@ namespace VideoConferenceConnection
         /// Приёмник информации
         /// </summary>
         public IContentReceiver ContentReceiver { get; set; }
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
+        public string ReceiverName { get; set; }
     }
 }

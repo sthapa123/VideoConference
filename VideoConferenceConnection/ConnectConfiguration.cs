@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NLog;
-using System.Net;
-using System.Net.PeerToPeer;
-using System.ServiceModel;
-using VideoConferenceResources;
 using VideoConferenceUtils;
 
 namespace VideoConferenceConnection
