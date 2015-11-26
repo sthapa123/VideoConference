@@ -6,6 +6,7 @@ using System.Net.PeerToPeer;
 using System.ServiceModel;
 using System.Text;
 using NLog;
+using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceResources;
 using VideoConferenceUtils;
@@ -24,7 +25,7 @@ namespace VideoConferenceConnection
         private PeerNameResolver _resolver;
         private List<Peer> _peerList;
         private static IPeersResolver _peersResolver;
-        private List<VoidCallback> _callbacks; 
+        private List<Constants.VoidCallback> _callbacks; 
 
         private PeersResolver()
         {
@@ -33,7 +34,7 @@ namespace VideoConferenceConnection
             _resolver.ResolveCompleted += resolver_ResolveCompleted;
 
             _peerList = new List<Peer>();
-            _callbacks = new List<VoidCallback>();
+            _callbacks = new List<Constants.VoidCallback>();
         }
 
         public static IPeersResolver Instance
@@ -58,7 +59,7 @@ namespace VideoConferenceConnection
         /// 
         /// </summary>
         /// <param name="callback"></param>
-        public void ReloadPeers(VoidCallback callback)
+        public void ReloadPeers(Constants.VoidCallback callback)
         {
             _callbacks.Add(callback);
             _peerList.Clear();

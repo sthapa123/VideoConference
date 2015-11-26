@@ -58,6 +58,10 @@
     <Compile Include="ReceiverServiceHost.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VideoConferenceCommon\VideoConferenceCommon.csproj">
+      <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
+      <Name>VideoConferenceCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VideoConferenceResources\VideoConferenceResources.csproj">
       <Project>{2089927D-9EAB-4A6A-A83B-DFE11FA99E08}</Project>
       <Name>VideoConferenceResources</Name>

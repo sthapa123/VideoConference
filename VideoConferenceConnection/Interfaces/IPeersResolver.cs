@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using VideoConferenceCommon;
 using VideoConferenceUtils;
 
 namespace VideoConferenceConnection.Interfaces
@@ -18,6 +19,6 @@ namespace VideoConferenceConnection.Interfaces
         /// Обновить список пиров, с методом обратного вызова
         /// </summary>
         /// <param name="callback">Метод обратного вызова</param>
-        void ReloadPeers(VoidCallback callback);
+        void ReloadPeers(Constants.VoidCallback callback);
     }
 }

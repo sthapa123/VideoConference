@@ -55,6 +55,10 @@
     <Folder Include="ControlsLogic\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VideoConferenceCommon\VideoConferenceCommon.csproj">
+      <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
+      <Name>VideoConferenceCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VideoConferenceConnection\VideoConferenceConnection.csproj">
       <Project>{2EF8A286-D29C-455A-BD87-0EE730FB1757}</Project>
       <Name>VideoConferenceConnection</Name>

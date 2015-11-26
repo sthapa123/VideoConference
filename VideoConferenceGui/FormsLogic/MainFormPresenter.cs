@@ -25,8 +25,7 @@ namespace VideoConferenceGui.FormsLogic
         /// </summary>
         public void ResolvePeers()
         {
-            var callback = new VoidCallback(RefreshPeersList);
-            _resolver.ReloadPeers(callback);
+            _resolver.ReloadPeers(RefreshPeersList);
         }
 
         private void RefreshPeersList()

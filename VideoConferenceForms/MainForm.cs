@@ -56,5 +56,13 @@ namespace VideoConference
                 listView1.Items.Add(item);
             }
         }
+
+        /// <summary>
+        /// Начать запись
+        /// </summary>
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
