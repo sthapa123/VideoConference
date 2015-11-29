@@ -7,6 +7,8 @@ using VideoConference.Interfaces;
 using VideoConferenceConnection;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceGui.FormsLogic;
+using VideoConferenceUtils.Audio;
+using VideoConferenceUtils.Interfaces;
 
 namespace VideoConference
 {
@@ -57,12 +59,25 @@ namespace VideoConference
             }
         }
 
+        private IAudioManager audioManager;
+        
         /// <summary>
         /// Начать запись
         /// </summary>
         private void button2_Click(object sender, EventArgs e)
         {
+            audioManager = AudioManager.Instance;
+            audioManager.StartAudioRecord();
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            audioManager.StopAudioRecord();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            audioManager.StartAudioPlay();
         }
     }
 }

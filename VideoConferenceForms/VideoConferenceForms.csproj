@@ -72,6 +72,10 @@
       <Project>{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}</Project>
       <Name>VideoConferenceGui</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceUtils\VideoConferenceUtils.csproj">
+      <Project>{b7da3cac-1e2e-4efc-8bf1-e41157507fc4}</Project>
+      <Name>VideoConferenceUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

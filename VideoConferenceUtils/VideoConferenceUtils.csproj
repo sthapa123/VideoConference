@@ -47,10 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioCodec.cs" />
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
+    <Compile Include="Audio\WaveHeader.cs" />
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="FileHelper.cs" />
+    <Compile Include="Interfaces\IAudioManager.cs" />
+    <Compile Include="Interfaces\IAudioPlayer.cs" />
+    <Compile Include="Interfaces\IAudioRecorder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +65,7 @@
       <Name>VideoConferenceCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
