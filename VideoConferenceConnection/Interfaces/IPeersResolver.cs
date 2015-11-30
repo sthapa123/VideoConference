@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using VideoConferenceCommon;
-using VideoConferenceUtils;
 
 namespace VideoConferenceConnection.Interfaces
 {

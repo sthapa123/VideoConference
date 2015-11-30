@@ -1,11 +1,14 @@
 ﻿using System.ServiceModel;
 using System.Text;
 using VideoConferenceConnection.Interfaces;
+using VideoConferenceObjects;
+using VideoConferenceObjects.Interfaces;
+using VideoConferenceUtils.Audio;
 
 namespace VideoConferenceConnection
 {
     /// <summary>
-    /// WCF сервис
+    /// WCF сервис, приёмник
     /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ContentReceiver : IContentReceiver
@@ -28,9 +31,14 @@ namespace VideoConferenceConnection
             return _username;
         }
 
-        public void SendMessage(string message, string from)
+        /// <summary>
+        /// Принять информацию
+        /// </summary>
+        /// <param name="package">Инфопакет</param>
+        /// <param name="from">От кого</param>
+        public void SendMessage(IPackage package, string from)
         {
-            
+            AudioManager.Instance.AddFragment(new AudioFragment(package.GetAudio()));
         }
     }
 }

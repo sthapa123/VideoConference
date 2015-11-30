@@ -10,20 +10,26 @@ namespace VideoConferenceObjects
     /// <summary>
     /// Пакет для отправки
     /// </summary>
+    
     public class Package : IPackage
     {
         /// <summary>
-        /// Время начала аудио
+        /// Фрагмент аудио
         /// </summary>
-        private DateTime _starTime;
-        /// <summary>
-        /// Время конца аудио
-        /// </summary>
-        private DateTime _endTime;
+        private IAudioFragment _audioFragment;
 
-        public Package()
+        public Package(IAudioFragment audioFragment)
         {
-            
+            _audioFragment = audioFragment;
+        }
+
+        /// <summary>
+        /// Получить аудио, готовое к воспроизведению
+        /// </summary>
+        /// <returns>Готовый к воспроизведению аудиофрагмент</returns>
+        public byte[] GetAudio()
+        {
+            return _audioFragment.GetDecodedData();
         }
     }
 }

@@ -7,7 +7,7 @@ using NAudio;
 using NAudio.Codecs;
 using NAudio.Wave;
 
-namespace VideoConferenceUtils.Audio
+namespace VideoConferenceObjects
 {
     public static class AudioCodec
     {
@@ -49,8 +49,5 @@ namespace VideoConferenceUtils.Audio
             }
             return decoded;
         }
-
-        [DllImport("winmm.dll")]
-        public static extern MmResult waveOutWrite(IntPtr hWaveOut, WaveHeader lpWaveOutHdr, int uSize);
     }
 }

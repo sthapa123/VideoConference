@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VideoConferenceUtils.Interfaces
 {
-    public interface IAudioPlayer
+    public interface IAudioPlayer : IAudioWorker
     {
         /// <summary>
         /// Начать процесс воспроизведения аудио

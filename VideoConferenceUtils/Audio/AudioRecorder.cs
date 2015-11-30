@@ -8,6 +8,7 @@ using System.Threading;
 using NAudio.Codecs;
 using NAudio.MediaFoundation;
 using NAudio.Wave;
+using VideoConferenceObjects;
 using VideoConferenceUtils.Interfaces;
 
 
@@ -16,14 +17,10 @@ namespace VideoConferenceUtils.Audio
     /// <summary>
     /// Класс, выполнающий запись аудио
     /// </summary>
-    public class AudioRecorder : IAudioRecorder
+    public class AudioRecorder : WaveIn, IAudioRecorder
     {
         private IAudioManager _audioManager;
-        private WaveIn _waveIn;
-        private Stream _stream;
 
-        private WaveFileWriter _writer;
-        
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -31,59 +28,24 @@ namespace VideoConferenceUtils.Audio
         /// <param name="timeSpan">Длина записываемого фрагмента</param>
         public AudioRecorder(IAudioManager audioManager, TimeSpan timeSpan)
         {
+            BufferMilliseconds = timeSpan.Milliseconds;
+            DeviceNumber = 0;
+            WaveFormat = AudioCodec.RecordFormat;
             _audioManager = audioManager;
-            _stream = new MemoryStream();
-            _writer = new WaveFileWriter(_stream, AudioCodec.RecordFormat);
-            InitRecorder(timeSpan);
-
+            this.DataAvailable += AudioRecorder_DataAvailable;
         }
 
-        private void InitRecorder(TimeSpan timeSpan)
+        void AudioRecorder_DataAvailable(object sender, WaveInEventArgs e)
         {
-            _waveIn = new WaveIn();
-            _waveIn.BufferMilliseconds = timeSpan.Milliseconds;
-            _waveIn.DeviceNumber = 0;
-            _waveIn.WaveFormat = AudioCodec.RecordFormat;
-            _waveIn.DataAvailable += _waveIn_DataAvailable;
-            _waveIn.RecordingStopped += _waveIn_RecordingStopped;
+            _audioManager.SendFragment(new AudioFragment(e.Buffer));
         }
-        
+
+        /// <summary>
+        /// Событие доступности фрагмента
+        /// </summary>s
         private void _waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
-            //todo Сделать класс фрагмента аудио, в котором будет кодирование и декодирование. Кодирование при созданииы
-            //_audioManager.AddFragment(AudioCodec.Encode(e.Buffer, 0, e.BytesRecorded));
-            _writer.Write(e.Buffer, 0, e.BytesRecorded);
-        }
-
-        private void _waveIn_RecordingStopped(object sender, StoppedEventArgs e)
-        {
-
-        }
-
-        public void Play()
-        {
-            var _waveOut = new WaveOut();
-            _stream.Position = 0;
-            IWaveProvider provider = new RawSourceWaveStream(_stream, AudioCodec.RecordFormat);
-
-            _waveOut.Init(provider);
-            _waveOut.Play();
-        }
-
-        /// <summary>
-        /// Начать запись
-        /// </summary>
-        public void StartRecording()
-        {
-            _waveIn.StartRecording();
-        }
-        
-        /// <summary>
-        /// Закончить запись
-        /// </summary>
-        public void StopRecording()
-        {
-            _waveIn.StopRecording();
+            _audioManager.AddFragment(new AudioFragment(e.Buffer));
         }
     }
 }

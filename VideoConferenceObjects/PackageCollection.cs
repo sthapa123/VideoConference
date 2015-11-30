@@ -6,7 +6,7 @@ using System.Text;
 
 namespace VideoConferenceObjects
 {
-    public class PackageCollection : IEnumerable
+    public class PackageCollection 
     {
 
     }

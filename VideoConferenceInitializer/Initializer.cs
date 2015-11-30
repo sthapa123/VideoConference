@@ -32,11 +32,11 @@ namespace VideoConferenceInitializer
         /// <returns>true - если инициализация прошла успешно</returns>
         public bool Initialize()
         {
-            //var receiver = ContentReceiver.Instance;
-            //var host = new ReceiverServiceHost(receiver);
-            //host.HostOpen();
-            //var registrator = new PeerRegistration(host.Port);
-            //registrator.StartRegistration();
+            var receiver = ContentReceiver.Instance;
+            var host = new ReceiverServiceHost(receiver);
+            host.HostOpen();
+            var registrator = new PeerRegistration(host.Port);
+            registrator.StartRegistration();
             _mainForm = new MainForm();
 
             _splashForm.Hide();

@@ -47,22 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AudioCodec.cs" />
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
-    <Compile Include="Audio\WaveHeader.cs" />
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="Interfaces\IAudioManager.cs" />
     <Compile Include="Interfaces\IAudioPlayer.cs" />
     <Compile Include="Interfaces\IAudioRecorder.cs" />
+    <Compile Include="Interfaces\IAudioWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VideoConferenceCommon\VideoConferenceCommon.csproj">
       <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
       <Name>VideoConferenceCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceObjects\VideoConferenceObjects.csproj">
+      <Project>{c96851cc-07ed-4732-ae4f-3130706217da}</Project>
+      <Name>VideoConferenceObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

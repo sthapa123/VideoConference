@@ -99,6 +99,10 @@
       <Project>{E3CCCF1C-C6E6-422E-B686-7F38F6CEC39D}</Project>
       <Name>VideoConferenceGui</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceObjects\VideoConferenceObjects.csproj">
+      <Project>{c96851cc-07ed-4732-ae4f-3130706217da}</Project>
+      <Name>VideoConferenceObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VideoConferenceResources\VideoConferenceResources.csproj">
       <Project>{2089927D-9EAB-4A6A-A83B-DFE11FA99E08}</Project>
       <Name>VideoConferenceResources</Name>

@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAudioInfo.cs" />
+    <Compile Include="AudioCodec.cs" />
+    <Compile Include="AudioFragment.cs" />
+    <Compile Include="Interfaces\IAudioFragment.cs" />
     <Compile Include="Interfaces\IImagesInfo.cs" />
     <Compile Include="Interfaces\IPackage.cs" />
     <Compile Include="Package.cs" />

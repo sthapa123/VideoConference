@@ -32,6 +32,7 @@ namespace VideoConference
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             this.Text = ConnectConfiguration.UserName + " " + ConnectConfiguration.Port;
+            AudioManager.Instance.StartAudioPlay();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace VideoConference
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            AudioManager.Instance.Dispose();
             Application.Exit();
         }
 
@@ -58,26 +60,18 @@ namespace VideoConference
                 listView1.Items.Add(item);
             }
         }
-
-        private IAudioManager audioManager;
         
         /// <summary>
         /// Начать запись
         /// </summary>
         private void button2_Click(object sender, EventArgs e)
         {
-            audioManager = AudioManager.Instance;
-            audioManager.StartAudioRecord();
+            _presenter.StartRecording();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            audioManager.StopAudioRecord();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            audioManager.StartAudioPlay();
+            AudioManager.Instance.StopAudioRecord();
         }
     }
 }

@@ -5,6 +5,9 @@ using System.Text;
 using NAudio;
 using NAudio.Wave;
 using NLog;
+using VideoConferenceConnection.Interfaces;
+using VideoConferenceObjects;
+using VideoConferenceObjects.Interfaces;
 using VideoConferenceUtils.Interfaces;
 
 namespace VideoConferenceUtils.Audio
@@ -12,7 +15,7 @@ namespace VideoConferenceUtils.Audio
     /// <summary>
     /// Класс, отвечающий за работу с аудио, синглтон
     /// </summary>
-    public class AudioManager : IAudioManager
+    public class AudioManager : IAudioManager , IDisposable
     {
         #region Логгирование
         private static Logger log = LogManager.GetCurrentClassLogger();
@@ -23,6 +26,11 @@ namespace VideoConferenceUtils.Audio
         /// Максимальное количество фрагментов в колекции
         /// </summary>
         private const int MaxFragmentCount = 10;
+
+        /// <summary>
+        /// Длина аудиофрагмента
+        /// </summary>
+        private const int FragmentLenght = 50;
 
         /// <summary>
         /// Экземпляр класа
@@ -42,14 +50,22 @@ namespace VideoConferenceUtils.Audio
         /// <summary>
         /// Коллексия фрагментов
         /// </summary>
-        private Dictionary<DateTime, byte[]> _audioFragmentsCollection;
-        #endregion
+        private Dictionary<DateTime, IAudioFragment> _audioFragmentsCollection;
 
+        private IContentSender _sender;
+        #endregion
+        
         private AudioManager()
         {
-            _recorder = new AudioRecorder(this, TimeSpan.FromMilliseconds(100));
+            _recorder = new AudioRecorder(this, TimeSpan.FromMilliseconds(FragmentLenght));
+            _recorder.DataAvailable += _recorder_DataAvailable;
             _player = new AudioPlayer(this);
-            _audioFragmentsCollection = new Dictionary<DateTime, byte[]>();
+            _audioFragmentsCollection = new Dictionary<DateTime, IAudioFragment>();
+        }
+
+        private void _recorder_DataAvailable(object sender, WaveInEventArgs e)
+        {
+            
         }
 
         public static IAudioManager Instance
@@ -57,11 +73,17 @@ namespace VideoConferenceUtils.Audio
             get { return _audioManager ?? (_audioManager = new AudioManager()); }
         }
 
+        public void SendFragment(IAudioFragment fragment)
+        {
+            var package = new Package(fragment);
+            _sender.SendPackage(package);
+        }
+
         /// <summary>
         /// Добавить фрагмент аудио в коллекцию
         /// </summary>
         /// <param name="fragment">Аудио фрагмент</param>
-        public void AddFragment(byte[] fragment)
+        public void AddFragment(IAudioFragment fragment)
         {
             try
             {
@@ -73,27 +95,30 @@ namespace VideoConferenceUtils.Audio
                 log.Warn(ex, "AddFragment. Фрагмент не был добавлен");
             }
         }
-        
+
         /// <summary>
         /// Возвращает фрагмент, удаляет его
         /// </summary>
         /// <returns>Фрагмент</returns>
-        public byte[] GetAndRemoveFragment()
+        public IAudioFragment GetAndRemoveFragment()
         {
-            //lock (_audioFragmentsCollection)
-            //{
+            lock (_audioFragmentsCollection)
+            {
+                if (_audioFragmentsCollection.Count == 0)
+                    return null;
                 var fragment = _audioFragmentsCollection.First().Value;
                 _audioFragmentsCollection.Remove(_audioFragmentsCollection.First().Key);
 
                 return fragment;
-           // }
+            }
         }
 
         /// <summary>
         /// Начать процесс записи аудио
         /// </summary>
-        public void StartAudioRecord()
+        public void StartAudioRecord(IContentSender sender)
         {
+            _sender = sender;
             _audioFragmentsCollection.Clear();
             _recorder.StartRecording();
         }
@@ -111,8 +136,15 @@ namespace VideoConferenceUtils.Audio
         /// </summary>
         public void StartAudioPlay()
         {
-            _recorder.Play();
-            //_player.StartPlay();
+            _player.StartPlay();
+        }
+
+        /// <summary>
+        /// Остановить процесс воспроизведения аудио
+        /// </summary>
+        public void StopAudioPlay()
+        {
+            _player.StopPlay();
         }
 
         /// <summary>
@@ -123,5 +155,23 @@ namespace VideoConferenceUtils.Audio
             while (_audioFragmentsCollection.Count > MaxFragmentCount)
                 _audioFragmentsCollection.Remove(_audioFragmentsCollection.First().Key);
         }
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            if (_recorder != null)
+            {
+                _recorder.Dispose();
+                _recorder = null;
+            }
+
+            if (_player != null)
+            {
+                _player.Dispose();
+                _player = null;
+            }
+        }
+        #endregion
     }
 }

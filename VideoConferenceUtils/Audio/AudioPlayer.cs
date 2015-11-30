@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using NAudio.Wave;
+using VideoConferenceObjects;
 using VideoConferenceUtils.Interfaces;
 
 namespace VideoConferenceUtils.Audio
@@ -16,7 +17,11 @@ namespace VideoConferenceUtils.Audio
     {
         private IAudioManager _audioManager;
 
-        private Thread playThread;
+        private Thread _playThread;
+        
+        private BufferedWaveProvider _provider;
+        private WaveOut _waveOut;
+
 
         public AudioPlayer(IAudioManager audioManager)
         {
@@ -28,8 +33,12 @@ namespace VideoConferenceUtils.Audio
         /// </summary>
         public void StartPlay()
         {
-            playThread = new Thread(Playing);
-            playThread.Start();
+            _waveOut = new WaveOut();
+            _provider = new BufferedWaveProvider(AudioCodec.RecordFormat);
+            _waveOut.Init(_provider);
+            _waveOut.Play();
+            _playThread = new Thread(Playing);
+            _playThread.Start();
         }
 
         /// <summary>
@@ -37,29 +46,38 @@ namespace VideoConferenceUtils.Audio
         /// </summary>
         public void StopPlay()
         {
-            playThread.Abort();
+            _playThread.Abort();
         }
-
-        private WaveOut _waveOut;
-
+        
         private void Playing()
         {
-            _waveOut = new WaveOut();
             while (true)
             {
                 var fragment = _audioManager.GetAndRemoveFragment();
-                var audioFragment = AudioCodec.Decode(fragment, 0, fragment.Length);
-
-                IWaveProvider provider = new RawSourceWaveStream(new MemoryStream(audioFragment), new WaveFormat());
-
-                _waveOut.Init(provider);
-                _waveOut.Play();
-
-                while (_waveOut.PlaybackState == PlaybackState.Playing)
+                if (fragment == null)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(50);
+                    continue;
                 }
+                var audioFragment = fragment.GetDecodedData();
+
+                _provider.AddSamples(audioFragment, 0, audioFragment.Length);
             }
         }
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            if (_playThread != null)
+            {
+                _playThread.Abort();
+                _playThread = null;
+            }
+            _waveOut.Stop();
+            _waveOut.Dispose();
+            _waveOut = null;
+        }
+        #endregion
     }
 }

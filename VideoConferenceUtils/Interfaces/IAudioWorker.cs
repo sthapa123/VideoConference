@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VideoConferenceObjects.Interfaces
+namespace VideoConferenceUtils.Interfaces
 {
-    public interface IAudioInfo
+    public interface IAudioWorker : IDisposable
     {
 
     }

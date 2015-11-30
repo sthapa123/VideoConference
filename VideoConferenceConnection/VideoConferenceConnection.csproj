@@ -48,8 +48,8 @@
   <ItemGroup>
     <Compile Include="ConnectConfiguration.cs" />
     <Compile Include="ContentSender.cs" />
-    <Compile Include="Interfaces\IContentReceiver.cs" />
     <Compile Include="ContentReceiver.cs" />
+    <Compile Include="Interfaces\IContentReceiver.cs" />
     <Compile Include="Interfaces\IPeersResolver.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="PeerRegistration.cs" />
@@ -62,12 +62,16 @@
       <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
       <Name>VideoConferenceCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceObjects\VideoConferenceObjects.csproj">
+      <Project>{c96851cc-07ed-4732-ae4f-3130706217da}</Project>
+      <Name>VideoConferenceObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VideoConferenceResources\VideoConferenceResources.csproj">
       <Project>{2089927D-9EAB-4A6A-A83B-DFE11FA99E08}</Project>
       <Name>VideoConferenceResources</Name>
     </ProjectReference>
     <ProjectReference Include="..\VideoConferenceUtils\VideoConferenceUtils.csproj">
-      <Project>{B7DA3CAC-1E2E-4EFC-8BF1-E41157507FC4}</Project>
+      <Project>{b7da3cac-1e2e-4efc-8bf1-e41157507fc4}</Project>
       <Name>VideoConferenceUtils</Name>
     </ProjectReference>
   </ItemGroup>

@@ -7,6 +7,10 @@ namespace VideoConferenceObjects.Interfaces
 {
     public interface IPackage
     {
-
+        /// <summary>
+        /// Получить аудио, готовое к воспроизведению
+        /// </summary>
+        /// <returns>Готовый к воспроизведению аудиофрагмент</returns>
+        byte[] GetAudio();
     }
 }
