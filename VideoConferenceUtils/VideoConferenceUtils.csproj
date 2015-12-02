@@ -56,6 +56,8 @@
     <Compile Include="Interfaces\IAudioPlayer.cs" />
     <Compile Include="Interfaces\IAudioRecorder.cs" />
     <Compile Include="Interfaces\IAudioWorker.cs" />
+    <Compile Include="Interfaces\IPackageCreator.cs" />
+    <Compile Include="PackageCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

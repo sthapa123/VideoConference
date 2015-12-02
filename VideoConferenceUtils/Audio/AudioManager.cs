@@ -48,24 +48,24 @@ namespace VideoConferenceUtils.Audio
         private IAudioPlayer _player;
 
         /// <summary>
-        /// Коллексия фрагментов
+        /// Коллексия фрагментов, записанных локально
         /// </summary>
-        private Dictionary<DateTime, IAudioFragment> _audioFragmentsCollection;
-
-        private IContentSender _sender;
+        private Dictionary<DateTime, IAudioFragment> _localAudio;
+        
+        /// <summary>
+        /// Коллексия фрагментов, полученных из сети
+        /// </summary>
+        private Dictionary<DateTime, IAudioFragment> _receivedAudio;
         #endregion
         
         private AudioManager()
         {
             _recorder = new AudioRecorder(this, TimeSpan.FromMilliseconds(FragmentLenght));
-            _recorder.DataAvailable += _recorder_DataAvailable;
             _player = new AudioPlayer(this);
-            _audioFragmentsCollection = new Dictionary<DateTime, IAudioFragment>();
-        }
+            _localAudio = new Dictionary<DateTime, IAudioFragment>();
+            _receivedAudio = new Dictionary<DateTime, IAudioFragment>();
 
-        private void _recorder_DataAvailable(object sender, WaveInEventArgs e)
-        {
-            
+            _recorder.DataAvailable += recorder_DataAvailable;
         }
 
         public static IAudioManager Instance
@@ -73,41 +73,52 @@ namespace VideoConferenceUtils.Audio
             get { return _audioManager ?? (_audioManager = new AudioManager()); }
         }
 
-        public void SendFragment(IAudioFragment fragment)
-        {
-            var package = new Package(fragment);
-            _sender.SendPackage(package);
-        }
-
         /// <summary>
-        /// Добавить фрагмент аудио в коллекцию
+        /// Добавить фрагмент аудио в коллекцию полученных по сети
         /// </summary>
         /// <param name="fragment">Аудио фрагмент</param>
-        public void AddFragment(IAudioFragment fragment)
+        public void AddReceivedFragment(IAudioFragment fragment)
         {
             try
             {
-                _audioFragmentsCollection.Add(DateTime.Now, fragment);
-                OnCollectionChanged();
+                _receivedAudio.Add(DateTime.Now, fragment);
+                OnReceivedCollectionChanged();
             }
             catch (Exception ex)
             {
-                log.Warn(ex, "AddFragment. Фрагмент не был добавлен");
+                log.Warn(ex, "AddReceivedFragment. Фрагмент не был добавлен");
             }
         }
 
         /// <summary>
-        /// Возвращает фрагмент, удаляет его
+        /// Возвращает локальный фрагмент, удаляет его
         /// </summary>
         /// <returns>Фрагмент</returns>
-        public IAudioFragment GetAndRemoveFragment()
+        public IAudioFragment GetAndRemoveLocalFragment()
         {
-            lock (_audioFragmentsCollection)
+            lock (_localAudio)
             {
-                if (_audioFragmentsCollection.Count == 0)
+                if (_localAudio.Count == 0)
                     return null;
-                var fragment = _audioFragmentsCollection.First().Value;
-                _audioFragmentsCollection.Remove(_audioFragmentsCollection.First().Key);
+                var fragment = _localAudio.First().Value;
+                _localAudio.Remove(_localAudio.First().Key);
+
+                return fragment;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает полученный фрагмент, удаляет его
+        /// </summary>
+        /// <returns>Фрагмент</returns>
+        public IAudioFragment GetAndRemoveReceivedFragment()
+        {
+            lock (_receivedAudio)
+            {
+                if (_receivedAudio.Count == 0)
+                    return null;
+                var fragment = _receivedAudio.First().Value;
+                _receivedAudio.Remove(_receivedAudio.First().Key);
 
                 return fragment;
             }
@@ -116,10 +127,10 @@ namespace VideoConferenceUtils.Audio
         /// <summary>
         /// Начать процесс записи аудио
         /// </summary>
-        public void StartAudioRecord(IContentSender sender)
+        public void StartAudioRecord()
         {
-            _sender = sender;
-            _audioFragmentsCollection.Clear();
+            _localAudio.Clear();
+            _receivedAudio.Clear();
             _recorder.StartRecording();
         }
 
@@ -150,10 +161,28 @@ namespace VideoConferenceUtils.Audio
         /// <summary>
         /// Событие изменения количества элементов
         /// </summary>
-        private void OnCollectionChanged()
+        private void OnLocalCollectionChanged()
         {
-            while (_audioFragmentsCollection.Count > MaxFragmentCount)
-                _audioFragmentsCollection.Remove(_audioFragmentsCollection.First().Key);
+            while (_localAudio.Count > MaxFragmentCount)
+                _localAudio.Remove(_localAudio.First().Key);
+        }
+
+        /// <summary>
+        /// Событие изменения количества элементов
+        /// </summary>
+        private void OnReceivedCollectionChanged()
+        {
+            while (_receivedAudio.Count > MaxFragmentCount)
+                _localAudio.Remove(_localAudio.First().Key);
+        }
+
+        /// <summary>
+        /// Событий готовности фрагмента
+        /// </summary>
+        private void recorder_DataAvailable(object sender, WaveInEventArgs e)
+        {
+            _localAudio.Add(DateTime.Now, new AudioFragment(e.Buffer));
+            OnLocalCollectionChanged();
         }
 
         #region IDisposable

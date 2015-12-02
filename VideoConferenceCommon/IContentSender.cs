@@ -8,11 +8,14 @@ namespace VideoConferenceConnection.Interfaces
 {
     public interface IContentSender
     {
-        //todo удалить ссылку на Objects
         /// <summary>
-        /// Отправить пакет информации
+        /// Начать отправку аудио
         /// </summary>
-        /// <param name="package"></param>
-        void SendPackage(IPackage package);
+        void StartSending();
+
+        /// <summary>
+        /// Остановить отправку аудио
+        /// </summary>
+        void StopSending();
     }
 }

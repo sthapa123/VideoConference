@@ -53,7 +53,7 @@ namespace VideoConferenceUtils.Audio
         {
             while (true)
             {
-                var fragment = _audioManager.GetAndRemoveFragment();
+                var fragment = _audioManager.GetAndRemoveReceivedFragment();
                 if (fragment == null)
                 {
                     Thread.Sleep(50);

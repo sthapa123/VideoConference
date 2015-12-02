@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using VideoConferenceCommon;
 using VideoConferenceObjects.Interfaces;
 
 namespace VideoConferenceConnection.Interfaces
@@ -10,6 +11,6 @@ namespace VideoConferenceConnection.Interfaces
         string GetName();
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(IPackage package, string from);
+        void SendMessage(Package package, string from);
     }
 }

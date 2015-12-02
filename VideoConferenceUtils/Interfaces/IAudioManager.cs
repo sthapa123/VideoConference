@@ -12,7 +12,7 @@ namespace VideoConferenceUtils.Interfaces
         /// <summary>
         /// Начать процесс записи звука
         /// </summary>
-        void StartAudioRecord(IContentSender sender);
+        void StartAudioRecord();
         /// <summary>
         /// Остановить процесс записи звука
         /// </summary>
@@ -26,16 +26,19 @@ namespace VideoConferenceUtils.Interfaces
         /// </summary>
         void StopAudioPlay();
         /// <summary>
-        /// Добавить фрагмент в коллекцию
+        /// Добавить полученный фрагмент в коллекцию
         /// </summary>
         /// <param name="fragment"></param>
-        void AddFragment(IAudioFragment fragment);
+        void AddReceivedFragment(IAudioFragment fragment);
         /// <summary>
-        /// Возвращает фрагмент, удаляет его
+        /// Возвращает локальный фрагмент, удаляет его
         /// </summary>
         /// <returns>Фрагмент</returns>
-        IAudioFragment GetAndRemoveFragment();
-
-        void SendFragment(IAudioFragment fragment);
+        IAudioFragment GetAndRemoveLocalFragment();
+        /// <summary>
+        /// Возвращает полученный фрагмент, удаляет его
+        /// </summary>
+        /// <returns>Фрагмент</returns>
+        IAudioFragment GetAndRemoveReceivedFragment();
     }
 }

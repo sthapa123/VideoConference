@@ -11,9 +11,15 @@ namespace VideoConferenceObjects.Interfaces
     public interface IAudioFragment
     {
         /// <summary>
-        /// Получить фрагмент аудио, готовый к воспроизведению
+        /// Получить фрагмент аудио, готовый к воспроизведению (раскодированный)
         /// </summary>
         /// <returns>Фрагмент</returns>
         byte[] GetDecodedData();
+
+        /// <summary>
+        /// Получить фрагмент аудио, готовый к передаче по сети (закодированный)
+        /// </summary>
+        /// <returns>Фрагмент</returns>
+        byte[] GetEncodedData();
     }
 }

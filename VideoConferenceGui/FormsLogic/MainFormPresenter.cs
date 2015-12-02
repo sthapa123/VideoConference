@@ -32,11 +32,32 @@ namespace VideoConferenceGui.FormsLogic
             _resolver.ReloadPeers(RefreshPeersList);
         }
 
+        /// <summary>
+        /// Начать запись аудио
+        /// </summary>
         public void StartRecording()
         {
+            AudioManager.Instance.StartAudioRecord();
+        }
+
+        /// <summary>
+        /// Начать передачу аудио
+        /// </summary>
+        public void StartSending()
+        {
             var peer = _resolver.Peers.First();
-            _sender = new ContentSender(peer);
-            AudioManager.Instance.StartAudioRecord(_sender);
+            var packageCreator = new PackageCreator(AudioManager.Instance);
+            _sender = new ContentSender(peer, packageCreator);
+            _sender.StartSending();
+        }
+
+        /// <summary>
+        /// Остановить передачуи запись
+        /// </summary>
+        public void StopRecordAndSending()
+        {
+            if (_sender != null)
+                _sender.StopSending();
         }
         
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using System.Text;
+using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
@@ -36,9 +37,10 @@ namespace VideoConferenceConnection
         /// </summary>
         /// <param name="package">Инфопакет</param>
         /// <param name="from">От кого</param>
-        public void SendMessage(IPackage package, string from)
+        public void SendMessage(Package package, string from)
         {
-            AudioManager.Instance.AddFragment(new AudioFragment(package.GetAudio()));
+            AudioManager.Instance.AddReceivedFragment(
+                new AudioFragment(AudioCodec.Decode(package.AudioData, 0, package.AudioData.Length)));
         }
     }
 }

@@ -51,8 +51,6 @@
     <Compile Include="AudioFragment.cs" />
     <Compile Include="Interfaces\IAudioFragment.cs" />
     <Compile Include="Interfaces\IImagesInfo.cs" />
-    <Compile Include="Interfaces\IPackage.cs" />
-    <Compile Include="Package.cs" />
     <Compile Include="PackageCollection.cs" />
     <Compile Include="PackageEnumenator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

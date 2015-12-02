@@ -32,20 +32,6 @@ namespace VideoConferenceUtils.Audio
             DeviceNumber = 0;
             WaveFormat = AudioCodec.RecordFormat;
             _audioManager = audioManager;
-            this.DataAvailable += AudioRecorder_DataAvailable;
-        }
-
-        void AudioRecorder_DataAvailable(object sender, WaveInEventArgs e)
-        {
-            _audioManager.SendFragment(new AudioFragment(e.Buffer));
-        }
-
-        /// <summary>
-        /// Событие доступности фрагмента
-        /// </summary>s
-        private void _waveIn_DataAvailable(object sender, WaveInEventArgs e)
-        {
-            _audioManager.AddFragment(new AudioFragment(e.Buffer));
         }
     }
 }

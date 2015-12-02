@@ -71,7 +71,12 @@ namespace VideoConference
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AudioManager.Instance.StopAudioRecord();
+            _presenter.StartSending();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            _presenter.StopRecordAndSending();
         }
     }
 }
