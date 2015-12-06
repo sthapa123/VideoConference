@@ -16,15 +16,15 @@ namespace VideoConferenceObjects
         /// <summary>
         /// Основная аудиоинформация
         /// </summary>
-        private byte[] data;
+        private byte[] _data;
 
         /// <summary>
         /// При создании фрагмента, информация кодируется
         /// </summary>
-        /// <param name="buffer"></param>
+        /// <param name="buffer">Незакодированная информация</param>
         public AudioFragment(byte[] buffer)
         {
-            data = AudioCodec.Encode(buffer, 0, buffer.Length);
+            _data = buffer;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace VideoConferenceObjects
         /// <returns>Фрагмент</returns>
         public byte[] GetDecodedData()
         {
-            return AudioCodec.Decode(data, 0, data.Length);
+            return _data;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace VideoConferenceObjects
         /// <returns>Фрагмент</returns>
         public byte[] GetEncodedData()
         {
-            return data;
+            return AudioCodec.Encode(_data, 0, _data.Length);
         }
     }
 }

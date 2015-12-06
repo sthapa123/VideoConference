@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,10 +51,15 @@
     <Compile Include="AudioCodec.cs" />
     <Compile Include="AudioFragment.cs" />
     <Compile Include="Interfaces\IAudioFragment.cs" />
+    <Compile Include="Interfaces\IDataFragment.cs" />
+    <Compile Include="Interfaces\IDataFragmentCollection.cs" />
     <Compile Include="Interfaces\IImagesInfo.cs" />
+    <Compile Include="Interfaces\IVideoFragment.cs" />
     <Compile Include="PackageCollection.cs" />
     <Compile Include="PackageEnumenator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VideoCoder.cs" />
+    <Compile Include="VideoFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

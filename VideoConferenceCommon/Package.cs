@@ -15,9 +15,21 @@ namespace VideoConferenceCommon
     public class Package
     {
         /// <summary>
+        /// Время записи фрагментов на передающей стороне
+        /// </summary>
+        [DataMember]
+        public long RecordTime { get; set; }
+
+        /// <summary>
         /// Аудио
         /// </summary>
         [DataMember]
         public byte[] AudioData { get; set; }
+
+        /// <summary>
+        /// Видео
+        /// </summary>
+        [DataMember]
+        public byte[] VideoData { get; set; }
     }
 }

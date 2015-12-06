@@ -1,8 +1,13 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
+using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
+using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
+using VideoConferenceUtils;
 using VideoConferenceUtils.Audio;
 using VideoConferenceUtils.Interfaces;
+using VideoConferenceUtils.Video;
 
 namespace VideoConferenceConnection
 {
@@ -60,11 +65,15 @@ namespace VideoConferenceConnection
                 var package = _packageCreator.GetPackage();
                 if (package == null)
                 {
-                    Thread.Sleep(50);
+                    Thread.Sleep(Constants.FragmentLenght);
                     continue;
                 }
-
+                
+                //Отправляем информацию
                 _peer.ContentReceiver.SendMessage(package, ConnectConfiguration.UserName);
+                
+                //Пока что тестирую локально, отправляю сразу в плеер
+                //ContentPlayer.Instance.AddPackage(package);
             }
         }
     }

@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Net.Configuration;
 using System.Windows.Forms;
+using AForge.Video;
 using NLog;
 using VideoConference.Interfaces;
 using VideoConferenceConnection;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceGui.FormsLogic;
+using VideoConferenceUtils;
 using VideoConferenceUtils.Audio;
 using VideoConferenceUtils.Interfaces;
+using VideoConferenceUtils.Video;
 
 namespace VideoConference
 {
@@ -29,10 +32,10 @@ namespace VideoConference
             _presenter = new MainFormPresenter(this, PeersResolver.Instance);
         }
 
-        private void MainForm_Load(object sender, System.EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             this.Text = ConnectConfiguration.UserName + " " + ConnectConfiguration.Port;
-            AudioManager.Instance.StartAudioPlay();
+            ContentPlayer.Instance.StartPlay(pictureBox1);
         }
 
         private void button1_Click(object sender, EventArgs e)

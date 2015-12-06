@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFragmentCollection.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IContentSender.cs" />
     <Compile Include="Package.cs" />

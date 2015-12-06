@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.PeerToPeer;
 using System.ServiceModel;
-using System.Text;
 using NLog;
 using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceResources;
-using VideoConferenceUtils;
 
 namespace VideoConferenceConnection
 {
@@ -50,22 +47,29 @@ namespace VideoConferenceConnection
             get { return _peerList; }
         }
 
+        /// <summary>
+        /// Обновить список пиров
+        /// </summary>
         public void ReloadPeers()
         {
             ReloadPeers(null);
         }
 
         /// <summary>
-        /// 
+        /// Обновление списка пиров, с методом обратного вызова
         /// </summary>
         /// <param name="callback"></param>
         public void ReloadPeers(Constants.VoidCallback callback)
         {
-            _callbacks.Add(callback);
+            if (callback != null)
+                _callbacks.Add(callback);
             _peerList.Clear();
             _resolver.ResolveAsync(new PeerName("0." + ConnectionConstants.MainPeerName), 1);
         }
 
+        /// <summary>
+        /// Обрабработка найденного объекта
+        /// </summary>
         private void resolver_ResolveProgressChanged(object sender, ResolveProgressChangedEventArgs e)
         {
             var peer = e.PeerNameRecord;
@@ -102,13 +106,17 @@ namespace VideoConferenceConnection
         /// </summary>
         void resolver_ResolveCompleted(object sender, ResolveCompletedEventArgs e)
         {
-            InvokeCallback();
+            InvokeCallbacks(e.Error);
         }
 
-        private void InvokeCallback()
+        /// <summary>
+        /// Вызов методов обратного вызова
+        /// </summary>
+        /// <param name="e"></param>
+        private void InvokeCallbacks(Exception e)
         {
             foreach (var voidCallback in _callbacks)
-                voidCallback.Invoke();
+                voidCallback.Invoke(e);
 
             _callbacks.Clear();
         }

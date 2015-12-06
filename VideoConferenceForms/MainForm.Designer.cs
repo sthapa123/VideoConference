@@ -36,6 +36,8 @@ namespace VideoConference
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new AForge.Controls.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -43,7 +45,7 @@ namespace VideoConference
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(509, 23);
+            this.button1.Size = new System.Drawing.Size(796, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,7 +56,7 @@ namespace VideoConference
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.peersColumn});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listView1.Location = new System.Drawing.Point(346, 23);
+            this.listView1.Location = new System.Drawing.Point(633, 23);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(163, 288);
             this.listView1.TabIndex = 3;
@@ -96,11 +98,22 @@ namespace VideoConference
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pictureBox1.Image = null;
+            this.pictureBox1.Location = new System.Drawing.Point(186, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(441, 269);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 311);
+            this.ClientSize = new System.Drawing.Size(796, 311);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -111,6 +124,7 @@ namespace VideoConference
             this.Text = "MainForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -123,6 +137,7 @@ namespace VideoConference
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private AForge.Controls.PictureBox pictureBox1;
 
 
 

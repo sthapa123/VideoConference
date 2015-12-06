@@ -1,10 +1,13 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using System.Text;
 using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
+using VideoConferenceUtils;
 using VideoConferenceUtils.Audio;
+using VideoConferenceUtils.Video;
 
 namespace VideoConferenceConnection
 {
@@ -14,7 +17,7 @@ namespace VideoConferenceConnection
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ContentReceiver : IContentReceiver
     {
-        private string _username;
+        private readonly string _username;
         private static IContentReceiver _receiver;
 
         private ContentReceiver()
@@ -39,8 +42,7 @@ namespace VideoConferenceConnection
         /// <param name="from">От кого</param>
         public void SendMessage(Package package, string from)
         {
-            AudioManager.Instance.AddReceivedFragment(
-                new AudioFragment(AudioCodec.Decode(package.AudioData, 0, package.AudioData.Length)));
+            ContentPlayer.Instance.AddPackage(package);
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NLog;
 using VideoConference.Interfaces;
 using VideoConferenceConnection;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceUtils;
 using VideoConferenceUtils.Audio;
+using VideoConferenceUtils.Video;
 
 namespace VideoConferenceGui.FormsLogic
 {
@@ -33,20 +35,21 @@ namespace VideoConferenceGui.FormsLogic
         }
 
         /// <summary>
-        /// Начать запись аудио
+        /// Начать запись информации
         /// </summary>
         public void StartRecording()
         {
-            AudioManager.Instance.StartAudioRecord();
+            AudioManager.Instance.StartRecord();
+            VideoManager.Instance.StartRecord();
         }
 
         /// <summary>
-        /// Начать передачу аудио
+        /// Начать передачу
         /// </summary>
         public void StartSending()
         {
             var peer = _resolver.Peers.First();
-            var packageCreator = new PackageCreator(AudioManager.Instance);
+            var packageCreator = new PackageCreator(AudioManager.Instance, VideoManager.Instance);
             _sender = new ContentSender(peer, packageCreator);
             _sender.StartSending();
         }
@@ -63,8 +66,13 @@ namespace VideoConferenceGui.FormsLogic
         /// <summary>
         /// Callback обновления списка
         /// </summary>
-        private void RefreshPeersList()
+        /// <param name="e">Ошибка во время обновления</param>
+        private void RefreshPeersList(Exception e)
         {
+            if (e != null)
+            {
+                log.Error(e, "Ошибка во время обновления списка пиров");
+            }
             _view.SetPeersList(_resolver.Peers);
         }
     }
