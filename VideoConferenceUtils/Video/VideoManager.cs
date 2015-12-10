@@ -24,6 +24,7 @@ namespace VideoConferenceUtils.Video
 
         private static IVideoManager _videoManager;
         private IVideoRecorder _videoRecorder;
+        private int _failCount;
         
         /// <summary>
         /// Коллекция локальных кадров
@@ -33,6 +34,7 @@ namespace VideoConferenceUtils.Video
         private VideoManager()
         {
             _localImages = new DataFragmentCollection();
+            _failCount = 0;
 
             SetRecorderSettings();
         }
@@ -73,9 +75,12 @@ namespace VideoConferenceUtils.Video
                     continue;
                 var videoFragment = item;
                 _localImages.Remove(item.Key);
+                _failCount = 0;
                 return videoFragment;
             }
 
+            if (_failCount++ > 10)
+                _localImages.Clear();
             return new KeyValuePair<DateTime, IDataFragment>();
         }
 
@@ -104,7 +109,11 @@ namespace VideoConferenceUtils.Video
         #region IDisposable
         public void Dispose()
         {
-
+            if (_videoRecorder != null)
+            {
+                _videoRecorder.Stop();
+                _videoRecorder = null;
+            }
         }
         #endregion
     }

@@ -119,5 +119,23 @@ namespace VideoConferenceUtils
                 Thread.Sleep(sleepTime);
             }
         }
+
+        public void Dispose()
+        {
+            if (_playThread != null && _playThread.IsAlive)
+                _playThread.Abort();
+
+            if (_audioPresenter != null)
+            {
+                _audioPresenter.Dispose();
+                _audioPresenter = null;
+            }
+
+            if (_videoPresenter != null)
+            {
+                _videoPresenter.Dispose();
+                _videoPresenter = null;
+            }
+        }
     }
 }

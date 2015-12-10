@@ -33,6 +33,8 @@ namespace VideoConferenceUtils.Audio
         /// </summary>
         private IAudioRecorder _recorder;
 
+        private bool _recording;
+
         /// <summary>
         /// Коллексия фрагментов, записанных локально
         /// </summary>
@@ -68,8 +70,12 @@ namespace VideoConferenceUtils.Audio
         /// </summary>
         public void StartRecord()
         {
-            _localAudio.Clear();
-            _recorder.StartRecording();
+            if (!_recording)
+            {
+                _localAudio.Clear();
+                _recorder.StartRecording();
+            }
+            _recording = true;
         }
 
         /// <summary>
@@ -77,7 +83,9 @@ namespace VideoConferenceUtils.Audio
         /// </summary>
         public void StopRecord()
         {
-            _recorder.StopRecording();
+            if (_recording)
+                _recorder.StopRecording();
+            _recording = false;
         }
 
         /// <summary>

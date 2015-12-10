@@ -39,5 +39,10 @@ namespace VideoConferenceUtils.Video
         {
             _viewer.Image = image;
         }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

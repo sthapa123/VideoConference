@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VideoConferenceUtils.Interfaces
 {
-    public interface IVideoPresenter : IDataPresenter
+    public interface IVideoPresenter : IDataPresenter, IDisposable
     {
 
     }

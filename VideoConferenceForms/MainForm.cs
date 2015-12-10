@@ -46,6 +46,8 @@ namespace VideoConference
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             AudioManager.Instance.Dispose();
+            VideoManager.Instance.Dispose();
+            ContentPlayer.Instance.Dispose();
             Application.Exit();
         }
 

@@ -7,7 +7,7 @@ using VideoConferenceCommon;
 
 namespace VideoConferenceUtils.Interfaces
 {
-    public interface IContentPlayer
+    public interface IContentPlayer : IDisposable
     {
         /// <summary>
         /// Начать процесс воспроизведения информации

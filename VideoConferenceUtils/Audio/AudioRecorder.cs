@@ -19,7 +19,7 @@ namespace VideoConferenceUtils.Audio
     /// </summary>
     public class AudioRecorder : WaveIn, IAudioRecorder
     {
-        private IAudioManager _audioManager;
+        private bool _recording;
 
         /// <summary>
         /// Конструктор
@@ -31,7 +31,6 @@ namespace VideoConferenceUtils.Audio
             BufferMilliseconds = timeSpan.Milliseconds;
             DeviceNumber = 0;
             WaveFormat = AudioCodec.RecordFormat;
-            _audioManager = audioManager;
         }
     }
 }
