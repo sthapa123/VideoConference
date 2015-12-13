@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AForge.Controls;
 using VideoConferenceCommon;
+using VideoConferenceObjects.Interfaces;
 
 namespace VideoConferenceUtils.Interfaces
 {
@@ -21,6 +22,6 @@ namespace VideoConferenceUtils.Interfaces
         /// Добавить полученный пакет в список воспроизведения
         /// </summary>
         /// <param name="package">Пакет</param>
-        void AddPackage(Package package);
+        void AddPackage(IPackage package);
     }
 }

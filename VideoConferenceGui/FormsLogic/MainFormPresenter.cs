@@ -2,6 +2,7 @@
 using System.Linq;
 using NLog;
 using VideoConference.Interfaces;
+using VideoConferenceCommon;
 using VideoConferenceConnection;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceUtils;
@@ -46,11 +47,13 @@ namespace VideoConferenceGui.FormsLogic
         /// <summary>
         /// Начать передачу
         /// </summary>
-        public void StartSending()
+        public void StartSending(IClient client)
         {
-            var peer = _resolver.Peers.First();
+            //var peer = _resolver.Peers.First();
+            //var peer = new Peer();
             var packageCreator = new PackageCreator(AudioManager.Instance, VideoManager.Instance);
-            _sender = new ContentSender(peer, packageCreator);
+            //_sender = new ContentSenderWcf(peer, packageCreator);
+            _sender = new ContentSenderTls(packageCreator, client);
             _sender.StartSending();
         }
 

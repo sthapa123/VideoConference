@@ -40,7 +40,7 @@ namespace VideoConferenceConnection
         /// </summary>
         /// <param name="package">Инфопакет</param>
         /// <param name="from">От кого</param>
-        public void SendMessage(Package package, string from)
+        public void SendMessage(IPackage package, string from)
         {
             ContentPlayer.Instance.AddPackage(package);
         }

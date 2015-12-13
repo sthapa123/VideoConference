@@ -34,7 +34,7 @@ namespace VideoConferenceUtils
         /// Возвращает пакет для отправки
         /// </summary>
         /// <returns>Пакет, готовый к отправке</returns>
-        public Package GetPackage()
+        public IPackage GetPackage()
         {
             var audioPair = _audioManager.GetAndRemoveLocalFragment(DateTime.Now);
             if (audioPair.Value == null)

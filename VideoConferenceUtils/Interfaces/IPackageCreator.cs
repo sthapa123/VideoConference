@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VideoConferenceCommon;
+﻿
+using VideoConferenceObjects.Interfaces;
 
-namespace VideoConferenceObjects.Interfaces
+namespace VideoConferenceUtils.Interfaces
 {
     public interface IPackageCreator
     {
-        Package GetPackage();
+        IPackage GetPackage();
     }
 }

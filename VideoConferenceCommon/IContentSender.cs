@@ -9,12 +9,12 @@ namespace VideoConferenceConnection.Interfaces
     public interface IContentSender
     {
         /// <summary>
-        /// Начать отправку аудио
+        /// Начать отправку информации
         /// </summary>
         void StartSending();
 
         /// <summary>
-        /// Остановить отправку аудио
+        /// Остановить отправку информации
         /// </summary>
         void StopSending();
     }

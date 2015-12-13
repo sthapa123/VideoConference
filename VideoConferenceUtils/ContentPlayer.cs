@@ -6,6 +6,7 @@ using System.Threading;
 using AForge.Controls;
 using VideoConferenceCommon;
 using VideoConferenceObjects;
+using VideoConferenceObjects.Interfaces;
 using VideoConferenceUtils.Audio;
 using VideoConferenceUtils.Interfaces;
 using VideoConferenceUtils.Video;
@@ -36,7 +37,7 @@ namespace VideoConferenceUtils
         /// <summary>
         /// Коллекция 
         /// </summary>
-        private SortedDictionary<DateTime, Package> _packages; 
+        private SortedDictionary<DateTime, IPackage> _packages; 
 
         /// <summary>
         /// Поток воспроизведения
@@ -46,7 +47,7 @@ namespace VideoConferenceUtils
 
         private ContentPlayer()
         {
-            _packages = new SortedDictionary<DateTime, Package>();
+            _packages = new SortedDictionary<DateTime, IPackage>();
             _audioPresenter = new AudioPresenter();
         }
 
@@ -74,11 +75,14 @@ namespace VideoConferenceUtils
                 _playThread.Abort();
         }
 
-        public void AddPackage(Package package)
+        public void AddPackage(IPackage package)
         {
-            var time = DateTime.FromBinary(package.RecordTime);
-            _packages.Add(time, package);
-            OnCollectionChanged();
+            lock (_packages)
+            {
+                var time = DateTime.FromBinary(package.RecordTime);
+                _packages.Add(time, package);
+                OnCollectionChanged();
+            }
         }
 
         /// <summary>
@@ -103,19 +107,25 @@ namespace VideoConferenceUtils
                     continue;
                 }
 
-                var firstFragment = _packages.First();
-                var sleepTime = _packages.ElementAt(1).Key - firstFragment.Key;
+                TimeSpan sleepTime;
 
-                var audioData = firstFragment.Value.AudioData;
-                if (audioData != null)
-                    _audioPresenter.SetPlayFragment(new AudioFragment(AudioCodec.Decode(audioData, 0, audioData.Length)));
+                lock (_packages)
+                {
 
-                var videoData = firstFragment.Value.VideoData;
-                if (videoData != null)
-                    _videoPresenter.SetPlayFragment(new VideoFragment(videoData));
+                    var firstFragment = _packages.First();
+                    sleepTime = _packages.ElementAt(1).Key - firstFragment.Key;
 
-                _packages.Remove(firstFragment.Key);
+                    var audioData = firstFragment.Value.AudioData;
+                    if (audioData != null)
+                        _audioPresenter.SetPlayFragment(
+                            new AudioFragment(AudioCodec.Decode(audioData, 0, audioData.Length)));
 
+                    var videoData = firstFragment.Value.VideoData;
+                    if (videoData != null)
+                        _videoPresenter.SetPlayFragment(new VideoFragment(videoData));
+
+                    _packages.Remove(firstFragment.Key);
+                }
                 Thread.Sleep(sleepTime);
             }
         }

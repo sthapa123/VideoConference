@@ -1,44 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
-using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
-using VideoConferenceUtils;
-using VideoConferenceUtils.Audio;
 using VideoConferenceUtils.Interfaces;
-using VideoConferenceUtils.Video;
 
 namespace VideoConferenceConnection
 {
-    /// <summary>
-    /// Передатчик
-    /// </summary>
-    public class ContentSender : IContentSender
+    public abstract class BaseSender : IContentSender
     {
         /// <summary>
-        /// Получатель
+        /// Создатель пакетов
         /// </summary>
-        private Peer _peer;
+        private IPackageCreator _packageCreator;
 
         /// <summary>
         /// Поток, занимающийся отправкой
         /// </summary>
         private Thread _sendThread;
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        private IPackageCreator _packageCreator;
 
-        public ContentSender(Peer peer, IPackageCreator creator)
+        protected BaseSender(IPackageCreator packageCreator)
         {
-            _peer = peer;
-            _packageCreator = creator;
+            _packageCreator = packageCreator;
         }
 
         /// <summary>
-        /// Начать отправку аудио
+        /// Начать отправку информации
         /// </summary>
         public void StartSending()
         {
@@ -47,7 +37,7 @@ namespace VideoConferenceConnection
         }
 
         /// <summary>
-        /// Остановить отправку аудио
+        /// Остановить отправку информации
         /// </summary>
         public void StopSending()
         {
@@ -56,7 +46,7 @@ namespace VideoConferenceConnection
         }
 
         /// <summary>
-        /// Процесс получения фрагмента и передачи его по сети
+        /// Процесс передачи
         /// </summary>
         private void Sending()
         {
@@ -68,13 +58,14 @@ namespace VideoConferenceConnection
                     Thread.Sleep(Constants.FragmentLenght);
                     continue;
                 }
-                
-                //Отправляем информацию
-                _peer.ContentReceiver.SendMessage(package, ConnectConfiguration.UserName);
-                
-                //Пока что тестирую локально, отправляю сразу в плеер
-                //ContentPlayer.Instance.AddPackage(package);
+
+                SendPackage(package);
             }
         }
+
+        /// <summary>
+        /// Передача фрагмента по сети
+        /// </summary>
+        protected abstract void SendPackage(IPackage package);
     }
 }

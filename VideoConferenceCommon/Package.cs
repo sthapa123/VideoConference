@@ -12,7 +12,7 @@ namespace VideoConferenceCommon
     /// DTO объект передачи
     /// </summary>
     [DataContract]
-    public class Package
+    public class Package : IPackage
     {
         /// <summary>
         /// Время записи фрагментов на передающей стороне

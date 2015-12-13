@@ -11,6 +11,6 @@ namespace VideoConferenceConnection.Interfaces
         string GetName();
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(Package package, string from);
+        void SendMessage(IPackage package, string from);
     }
 }

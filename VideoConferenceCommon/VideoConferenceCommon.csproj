@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="DataFragmentCollection.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="IClient.cs" />
     <Compile Include="IContentSender.cs" />
+    <Compile Include="IPackage.cs" />
     <Compile Include="Package.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

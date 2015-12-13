@@ -47,16 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClient.cs" />
+    <Compile Include="BaseSender.cs" />
+    <Compile Include="BinaryDataManager.cs" />
+    <Compile Include="Client\Client.cs" />
     <Compile Include="ConnectConfiguration.cs" />
-    <Compile Include="ContentSender.cs" />
+    <Compile Include="ContentSenderTls.cs" />
+    <Compile Include="ContentSenderWcf.cs" />
     <Compile Include="ContentReceiver.cs" />
+    <Compile Include="Interfaces\IBinaryDataManager.cs" />
     <Compile Include="Interfaces\IContentReceiver.cs" />
+    <Compile Include="Interfaces\IMainServer.cs" />
     <Compile Include="Interfaces\IPeersResolver.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="PeerRegistration.cs" />
     <Compile Include="PeersResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverServiceHost.cs" />
+    <Compile Include="Server\MainServer.cs" />
+    <Compile Include="Server\RemoteClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VideoConferenceCommon\VideoConferenceCommon.csproj">
@@ -82,6 +91,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
