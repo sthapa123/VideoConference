@@ -87,6 +87,7 @@
     <Compile Include="Interfaces\IVideoPresenter.cs" />
     <Compile Include="Interfaces\IVideoRecorder.cs" />
     <Compile Include="Interfaces\IVideoWorker.cs" />
+    <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="PackageCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Video\VideoManager.cs" />

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
 using VideoConferenceUtils;
 
 namespace VideoConferenceConnection
@@ -30,6 +32,13 @@ namespace VideoConferenceConnection
         public static int Port
         {
             get { return ConfigurationHelper.GetAppConfigurationInt("port", 0); }
+        }
+
+        public static IPAddress CurrentAddress()
+        {
+            String host = System.Net.Dns.GetHostName();
+            var ips = System.Net.Dns.GetHostByName(host).AddressList;
+            return ips.First();
         }
     }
 }

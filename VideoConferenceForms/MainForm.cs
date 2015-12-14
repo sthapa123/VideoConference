@@ -44,6 +44,7 @@ namespace VideoConference
         {
             this.Text = ConnectConfiguration.UserName + " " + ConnectConfiguration.Port;
             ContentPlayer.Instance.StartPlay(pictureBox1);
+            textBox1.Text = ConnectConfiguration.CurrentAddress().ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)

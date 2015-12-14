@@ -11,6 +11,7 @@ using System.Threading;
 using VideoConferenceCommon;
 using VideoConferenceConnection.Interfaces;
 using VideoConferenceObjects.Interfaces;
+using VideoConferenceUtils;
 
 namespace VideoConferenceConnection.Client
 {
@@ -73,13 +74,21 @@ namespace VideoConferenceConnection.Client
         /// </summary>
         protected override void SetupConnect()
         {
-            _tcpClient = new TcpClient(new IPEndPoint(ServerAddress, Port));
-            //Пока что локалхост
-            //_tcpClient = new TcpClient("localhost", Port);
-            _netStream = _tcpClient.GetStream();
-            _sslStream = new SslStream(_netStream, false, ValidateCert);
-            _sslStream.AuthenticateAsClient("InstantServer");
-            _binaryDataManager = new BinaryDataManager(_sslStream);
+            try
+            {
+                _tcpClient = new TcpClient(ServerAddress.ToString(), Port);
+                //Пока что локалхост
+                //_tcpClient = new TcpClient("localhost", Port);
+                _netStream = _tcpClient.GetStream();
+                _sslStream = new SslStream(_netStream, false, ValidateCert);
+                _sslStream.AuthenticateAsClient("InstantServer");
+                _binaryDataManager = new BinaryDataManager(_sslStream);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ShowMessage("Во время подключения произошла к серверу ошибка: {0}", ex.Message);
+                return;
+            }
 
             if (!_binaryDataManager.ReceiveHello())
             {
