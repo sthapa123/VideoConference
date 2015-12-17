@@ -57,7 +57,6 @@
     <Compile Include="ContentReceiver.cs" />
     <Compile Include="Interfaces\IBinaryDataManager.cs" />
     <Compile Include="Interfaces\IContentReceiver.cs" />
-    <Compile Include="Interfaces\IMainServer.cs" />
     <Compile Include="Interfaces\IPeersResolver.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="PeerRegistration.cs" />
@@ -71,6 +70,10 @@
     <ProjectReference Include="..\VideoConferenceCommon\VideoConferenceCommon.csproj">
       <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
       <Name>VideoConferenceCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceGui\VideoConferenceGui.csproj">
+      <Project>{e3cccf1c-c6e6-422e-b686-7f38f6cec39d}</Project>
+      <Name>VideoConferenceGui</Name>
     </ProjectReference>
     <ProjectReference Include="..\VideoConferenceObjects\VideoConferenceObjects.csproj">
       <Project>{c96851cc-07ed-4732-ae4f-3130706217da}</Project>

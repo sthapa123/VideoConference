@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,7 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormsLogic\MainFormPresenter.cs" />
+    <Compile Include="Interfaces\IAudioManager.cs" />
+    <Compile Include="Interfaces\IAudioWorker.cs" />
+    <Compile Include="Interfaces\IContentManager.cs" />
+    <Compile Include="Interfaces\IContentPlayer.cs" />
     <Compile Include="Interfaces\IMainForm.cs" />
+    <Compile Include="Interfaces\IVideoManager.cs" />
+    <Compile Include="Interfaces\IVideoScreen.cs" />
+    <Compile Include="Interfaces\IVideoWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,14 +67,13 @@
       <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
       <Name>VideoConferenceCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VideoConferenceConnection\VideoConferenceConnection.csproj">
-      <Project>{2EF8A286-D29C-455A-BD87-0EE730FB1757}</Project>
-      <Name>VideoConferenceConnection</Name>
+    <ProjectReference Include="..\VideoConferenceObjects\VideoConferenceObjects.csproj">
+      <Project>{c96851cc-07ed-4732-ae4f-3130706217da}</Project>
+      <Name>VideoConferenceObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VideoConferenceUtils\VideoConferenceUtils.csproj">
-      <Project>{B7DA3CAC-1E2E-4EFC-8BF1-E41157507FC4}</Project>
-      <Name>VideoConferenceUtils</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

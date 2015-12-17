@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AForge.Controls;
 using VideoConferenceCommon;
 using VideoConferenceObjects.Interfaces;
 
-namespace VideoConferenceUtils.Interfaces
+namespace VideoConferenceGui.Interfaces
 {
     public interface IContentPlayer : IDisposable
     {
         /// <summary>
         /// Начать процесс воспроизведения информации
         /// </summary>
-        void StartPlay(PictureBox videoViewRef);
+        void StartPlay(IVideoScreen player);
         /// <summary>
         /// Остановить процесс воспроизведения информации
         /// </summary>

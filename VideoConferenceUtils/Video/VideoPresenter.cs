@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using AForge.Controls;
 using VideoConferenceCommon;
+using VideoConferenceGui.Interfaces;
 using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
 using VideoConferenceUtils.Interfaces;
@@ -14,11 +15,11 @@ namespace VideoConferenceUtils.Video
 {
     public class VideoPresenter : IVideoPresenter
     {
-        private PictureBox _viewer;
-        
-        public VideoPresenter(PictureBox pictureBoxRef)
+        private IVideoScreen _viewer;
+
+        public VideoPresenter(IVideoScreen videoScreen)
         {
-            _viewer = pictureBoxRef;
+            _viewer = videoScreen;
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace VideoConferenceUtils.Video
         /// <param name="image"></param>
         private void ShowImage(Image image)
         {
-            _viewer.Image = image;
+            _viewer.ShowFrame(image);
         }
 
         public void Dispose()

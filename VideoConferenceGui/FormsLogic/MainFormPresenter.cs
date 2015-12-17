@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using NLog;
-using VideoConference.Interfaces;
 using VideoConferenceCommon;
 using VideoConferenceConnection;
 using VideoConferenceConnection.Interfaces;
-using VideoConferenceUtils;
-using VideoConferenceUtils.Audio;
-using VideoConferenceUtils.Video;
+using VideoConferenceGui.Interfaces;
+using VideoConferenceObjects.Interfaces;
+using VideoConferenceUtils.Interfaces;
 
 namespace VideoConferenceGui.FormsLogic
 {
@@ -17,66 +17,95 @@ namespace VideoConferenceGui.FormsLogic
         private static Logger log = LogManager.GetCurrentClassLogger();
         #endregion
 
-        private IPeersResolver _resolver;
-        private IContentSender _sender;
+        //Временно всё так. После будет распределено лучше. Пока тестирование
         private IMainForm _view;
+        private IAudioManager _audioManager;
+        private IVideoManager _videoManager;
+        private IContentPlayer _contentPlayer;
+        private IContentSender _sender;
+        private IMainServer _server;
 
-        public MainFormPresenter(IMainForm mainForm, IPeersResolver resolver)
+        public MainFormPresenter(IMainForm mainForm, IAudioManager audioManager, IVideoManager videoManager,
+            IContentPlayer contantPlayer)
         {
             _view = mainForm;
-            _resolver = resolver;
+            _audioManager = audioManager;
+            _videoManager = videoManager;
+            _contentPlayer = contantPlayer;
+            //Разобраться с резолвером пиров
         }
 
-        /// <summary>
-        /// Обновить список пиров
-        /// </summary>
-        public void ResolvePeers()
-        {
-            _resolver.ReloadPeers(RefreshPeersList);
-        }
+        #region Работа с контентом
 
         /// <summary>
         /// Начать запись информации
         /// </summary>
         public void StartRecording()
         {
-            AudioManager.Instance.StartRecord();
-            VideoManager.Instance.StartRecord();
+            _audioManager.StartRecord();
+            _videoManager.StartRecord();
         }
+
+        /// <summary>
+        /// Остановить запись информации
+        /// </summary>
+        public void StopRecord()
+        {
+            _audioManager.StopRecord();
+            _videoManager.StopRecord();
+        }
+
+        /// <summary>
+        /// Начать воспроизведение информации
+        /// </summary>
+        /// <param name="pictureBox">Контрол, отображающий видео</param>
+        public void StartPlay(IVideoScreen pictureBox)
+        {
+            _contentPlayer.StartPlay(pictureBox);
+        }
+        
+        /// <summary>
+        /// Остановить воспроизведение информации
+        /// </summary>
+        public void StopPlay()
+        {
+            _contentPlayer.StopPlay();
+        }
+
+        #endregion
+
+        #region Работа с подключением
+
+        /// <summary>
+        /// Запустить сервер
+        /// </summary>
+        /// <param name="server"></param>
+        public void StartServer(IMainServer server)
+        {
+            _server = server;
+            _server.RunServer();
+        }
+
+        /// <summary>
+        /// Остановить сервер
+        /// </summary>
+        public void StopServer()
+        {
+            if (_server!= null && _server.IsRunning)
+                _server.StopServer();
+        }
+
+        #endregion
+
+
 
         /// <summary>
         /// Начать передачу
         /// </summary>
-        public void StartSending(IClient client)
+        public void StartSending(IClient client, IContentSender sender)
         {
-            //var peer = _resolver.Peers.First();
-            //var peer = new Peer();
-            var packageCreator = new PackageCreator(AudioManager.Instance, VideoManager.Instance);
-            //_sender = new ContentSenderWcf(peer, packageCreator);
-            _sender = new ContentSenderTls(packageCreator, client);
+            _sender = sender;
             _sender.StartSending();
-        }
-
-        /// <summary>
-        /// Остановить передачуи запись
-        /// </summary>
-        public void StopRecordAndSending()
-        {
-            if (_sender != null)
-                _sender.StopSending();
-        }
-        
-        /// <summary>
-        /// Callback обновления списка
-        /// </summary>
-        /// <param name="e">Ошибка во время обновления</param>
-        private void RefreshPeersList(Exception e)
-        {
-            if (e != null)
-            {
-                log.Error(e, "Ошибка во время обновления списка пиров");
-            }
-            _view.SetPeersList(_resolver.Peers);
         }
     }
 }

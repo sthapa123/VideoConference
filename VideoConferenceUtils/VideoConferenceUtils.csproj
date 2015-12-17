@@ -75,18 +75,12 @@
     <Compile Include="ContentPlayer.cs" />
     <Compile Include="ContentSynchronizer.cs" />
     <Compile Include="FileHelper.cs" />
-    <Compile Include="Interfaces\IAudioManager.cs" />
     <Compile Include="Interfaces\IAudioPresenter.cs" />
     <Compile Include="Interfaces\IAudioRecorder.cs" />
-    <Compile Include="Interfaces\IAudioWorker.cs" />
-    <Compile Include="Interfaces\IContentManager.cs" />
-    <Compile Include="Interfaces\IContentPlayer.cs" />
     <Compile Include="Interfaces\IDataPresenter.cs" />
     <Compile Include="Interfaces\IPackageCreator.cs" />
-    <Compile Include="Interfaces\IVideoManager.cs" />
     <Compile Include="Interfaces\IVideoPresenter.cs" />
     <Compile Include="Interfaces\IVideoRecorder.cs" />
-    <Compile Include="Interfaces\IVideoWorker.cs" />
     <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="PackageCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +92,10 @@
     <ProjectReference Include="..\VideoConferenceCommon\VideoConferenceCommon.csproj">
       <Project>{2FD42E7E-B1F1-478E-9430-3254E157860C}</Project>
       <Name>VideoConferenceCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoConferenceGui\VideoConferenceGui.csproj">
+      <Project>{e3cccf1c-c6e6-422e-b686-7f38f6cec39d}</Project>
+      <Name>VideoConferenceGui</Name>
     </ProjectReference>
     <ProjectReference Include="..\VideoConferenceObjects\VideoConferenceObjects.csproj">
       <Project>{c96851cc-07ed-4732-ae4f-3130706217da}</Project>

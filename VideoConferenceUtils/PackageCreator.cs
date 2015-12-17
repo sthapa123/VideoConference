@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VideoConferenceCommon;
+using VideoConferenceGui.Interfaces;
 using VideoConferenceObjects.Interfaces;
 using VideoConferenceUtils.Interfaces;
 
@@ -39,7 +40,6 @@ namespace VideoConferenceUtils
             var audioPair = _audioManager.GetAndRemoveLocalFragment(DateTime.Now);
             if (audioPair.Value == null)
                 return null;
-
             var time = audioPair.Key;
             
             var videoPair = _videoManager.GetAndRemoveLocalFragment(time);

@@ -7,7 +7,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
-using VideoConferenceConnection.Interfaces;
+using VideoConferenceObjects.Interfaces;
 
 namespace VideoConferenceConnection.Server
 {

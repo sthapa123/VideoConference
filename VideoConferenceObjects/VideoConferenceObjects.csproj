@@ -54,9 +54,9 @@
     <Compile Include="Interfaces\IDataFragment.cs" />
     <Compile Include="Interfaces\IDataFragmentCollection.cs" />
     <Compile Include="Interfaces\IImagesInfo.cs" />
+    <Compile Include="Interfaces\IMainServer.cs" />
     <Compile Include="Interfaces\IVideoFragment.cs" />
     <Compile Include="PackageCollection.cs" />
-    <Compile Include="PackageEnumenator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoCoder.cs" />
     <Compile Include="VideoFragment.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using AForge.Controls;
 using VideoConferenceCommon;
+using VideoConferenceGui.Interfaces;
 using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
 using VideoConferenceUtils.Audio;
@@ -59,9 +60,9 @@ namespace VideoConferenceUtils
         /// <summary>
         /// Начать процесс воспроизведения
         /// </summary>
-        public void StartPlay(PictureBox videoViewRef)
+        public void StartPlay(IVideoScreen videoScreen)
         {
-            _videoPresenter = new VideoPresenter(videoViewRef);
+            _videoPresenter = new VideoPresenter(videoScreen);
             _playThread = new Thread(Playing);
             _playThread.Start();
         }
@@ -75,6 +76,10 @@ namespace VideoConferenceUtils
                 _playThread.Abort();
         }
 
+        /// <summary>
+        /// Добавить полученный пакет к коллекции
+        /// </summary>
+        /// <param name="package"></param>
         public void AddPackage(IPackage package)
         {
             lock (_packages)
@@ -86,16 +91,7 @@ namespace VideoConferenceUtils
         }
 
         /// <summary>
-        /// Событие изменения количества элементов
-        /// </summary>
-        private void OnCollectionChanged()
-        {
-            while (_packages.Count > Constants.MaxFragmentCount)
-                _packages.Remove(_packages.First().Key);
-        }
-
-        /// <summary>
-        /// Воспроизведение
+        /// Отдельный поток воспроизведения информации
         /// </summary>
         private void Playing()
         {
@@ -146,6 +142,15 @@ namespace VideoConferenceUtils
                 _videoPresenter.Dispose();
                 _videoPresenter = null;
             }
+        }
+
+        /// <summary>
+        /// Событие изменения количества элементов
+        /// </summary>
+        private void OnCollectionChanged()
+        {
+            while (_packages.Count > Constants.MaxFragmentCount)
+                _packages.Remove(_packages.First().Key);
         }
     }
 }

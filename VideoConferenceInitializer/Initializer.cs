@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NLog;
-using VideoConference;
-using VideoConference.Interfaces;
 using VideoConferenceConnection;
+using VideoConferenceForms;
 
 namespace VideoConferenceInitializer
 {

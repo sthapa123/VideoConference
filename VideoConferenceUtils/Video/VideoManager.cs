@@ -7,6 +7,7 @@ using AForge.Controls;
 using AForge.Video.DirectShow;
 using NLog;
 using VideoConferenceCommon;
+using VideoConferenceGui.Interfaces;
 using VideoConferenceObjects;
 using VideoConferenceObjects.Interfaces;
 using VideoConferenceUtils.Interfaces;
