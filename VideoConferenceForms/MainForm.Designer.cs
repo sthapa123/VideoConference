@@ -187,6 +187,7 @@
             this.btnStopClient.TabIndex = 16;
             this.btnStopClient.Text = "Разорвать подключение";
             this.btnStopClient.UseVisualStyleBackColor = true;
+            this.btnStopClient.Click += new System.EventHandler(this.btnStopClient_Click);
             // 
             // btnStartClient
             // 
@@ -196,6 +197,7 @@
             this.btnStartClient.TabIndex = 15;
             this.btnStartClient.Text = "Подключиться к серверу";
             this.btnStartClient.UseVisualStyleBackColor = true;
+            this.btnStartClient.Click += new System.EventHandler(this.btnStartClient_Click);
             // 
             // groupBoxServer
             // 
@@ -267,6 +269,7 @@
             this.btnStopSend.TabIndex = 12;
             this.btnStopSend.Text = "Остановить передачу информации";
             this.btnStopSend.UseVisualStyleBackColor = true;
+            this.btnStopSend.Click += new System.EventHandler(this.btnStopSend_Click);
             // 
             // btnStartSend
             // 
@@ -276,6 +279,7 @@
             this.btnStartSend.TabIndex = 11;
             this.btnStartSend.Text = "Начать передачу информации";
             this.btnStartSend.UseVisualStyleBackColor = true;
+            this.btnStartSend.Click += new System.EventHandler(this.btnStartSend_Click);
             // 
             // videoScreen1
             // 

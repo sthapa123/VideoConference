@@ -36,9 +36,12 @@ namespace VideoConferenceConnection
 
         public static IPAddress CurrentAddress()
         {
-            String host = System.Net.Dns.GetHostName();
-            var ips = System.Net.Dns.GetHostByName(host).AddressList;
-            return ips.First();
+            String host = Dns.GetHostName();
+            var ips = Dns.GetHostByName(host).AddressList;
+
+            return ips.Any()
+                ? ips.Last()
+                : null;
         }
     }
 }

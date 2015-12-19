@@ -14,7 +14,9 @@ namespace VideoConferenceGui.FormsLogic
     public class MainFormPresenter
     {
         #region Логгирование
+
         private static Logger log = LogManager.GetCurrentClassLogger();
+
         #endregion
 
         //Временно всё так. После будет распределено лучше. Пока тестирование
@@ -24,6 +26,7 @@ namespace VideoConferenceGui.FormsLogic
         private IContentPlayer _contentPlayer;
         private IContentSender _sender;
         private IMainServer _server;
+        private IClient _client;
 
         public MainFormPresenter(IMainForm mainForm, IAudioManager audioManager, IVideoManager videoManager,
             IContentPlayer contantPlayer)
@@ -63,7 +66,7 @@ namespace VideoConferenceGui.FormsLogic
         {
             _contentPlayer.StartPlay(pictureBox);
         }
-        
+
         /// <summary>
         /// Остановить воспроизведение информации
         /// </summary>
@@ -91,21 +94,49 @@ namespace VideoConferenceGui.FormsLogic
         /// </summary>
         public void StopServer()
         {
-            if (_server!= null && _server.IsRunning)
+            if (_server != null && _server.IsRunning)
                 _server.StopServer();
+        }
+
+        /// <summary>
+        /// Подключиться к серверу
+        /// </summary>
+        public void ConnectToServer(IClient client)
+        {
+            _client = client;
+            _client.StartConnect();
+        }
+
+        /// <summary>
+        /// Разорвать соединение с сервером
+        /// </summary>
+        public void DisconnectFromServer()
+        {
+            _sender.StopSending();
+            _client.Disconnect();
         }
 
         #endregion
 
-
+        #region Работа с передачей
 
         /// <summary>
         /// Начать передачу
         /// </summary>
-        public void StartSending(IClient client, IContentSender sender)
+        public void StartSending(IContentSender sender)
         {
             _sender = sender;
             _sender.StartSending();
         }
+
+        /// <summary>
+        /// Остановить передачу
+        /// </summary>
+        public void StopSending()
+        {
+            _sender.StopSending();
+        }
+
+        #endregion
     }
 }

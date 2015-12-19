@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using NLog;
+using VideoConferenceCommon;
 using VideoConferenceConnection;
+using VideoConferenceConnection.Client;
 using VideoConferenceConnection.Server;
 using VideoConferenceGui.FormsLogic;
 using VideoConferenceGui.Interfaces;
@@ -21,6 +23,7 @@ namespace VideoConferenceForms
         #endregion
 
         private MainFormPresenter _presenter;
+        private IClient _client;
 
         public MainForm()
         {
@@ -38,7 +41,7 @@ namespace VideoConferenceForms
         {
             this.Text = ConnectConfiguration.UserName + " " + ConnectConfiguration.Port;
             textBox1.Text = ConnectConfiguration.CurrentAddress().ToString();
-            _presenter.StartRecording();
+            //_presenter.StartRecording();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -78,6 +81,35 @@ namespace VideoConferenceForms
         private void btnStopServer_Click(object sender, EventArgs e)
         {
             _presenter.StopServer();
+        }
+
+        private void btnStartClient_Click(object sender, EventArgs e)
+        {
+            //Какой нибуд метод GetClient() в utils
+            _client = new Client(ConnectConfiguration.Port, textBox2.Text);
+            _presenter.ConnectToServer(_client);
+        }
+
+        private void btnStopClient_Click(object sender, EventArgs e)
+        {
+            _presenter.DisconnectFromServer();
+        }
+
+        private void btnStartSend_Click(object sender, EventArgs e)
+        {
+            if (_client == null)
+            {
+                _client = ClientsCollection.GetFirstClient();
+            }
+            var creator = new PackageCreator(AudioManager.Instance, VideoManager.Instance);
+            var contentSender = new ContentSenderTls(creator, _client);
+
+            _presenter.StartSending(contentSender);
+        }
+
+        private void btnStopSend_Click(object sender, EventArgs e)
+        {
+            _presenter.StopSending();
         }
     }
 }

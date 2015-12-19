@@ -38,11 +38,6 @@ namespace VideoConferenceConnection.Server
         /// Поток ожидания подключений
         /// </summary>
         private Thread _listenThread;
-
-        /// <summary>
-        /// Коллекция подключившихся клиентов
-        /// </summary>
-        private List<RemoteClient> _clients; 
         
         #endregion
 
@@ -74,7 +69,6 @@ namespace VideoConferenceConnection.Server
             _port = port;
             _ipAddress = ipAddress;
             _certificate = new X509Certificate2("server.pfx", "instant");
-            _clients = new List<RemoteClient>();
             IsRunning = false;
         }
 
@@ -132,8 +126,9 @@ namespace VideoConferenceConnection.Server
 
             IsRunning = false;
 
-            foreach (var remoteClient in _clients)
-                remoteClient.Disconnect();
+            //foreach (var remoteClient in _clients)
+            //    remoteClient.Disconnect();
+            ClientsCollection.GetFirstClient().Disconnect();
             _listener.Stop();
         }
 
@@ -149,7 +144,7 @@ namespace VideoConferenceConnection.Server
                     var tcpClient = _listener.AcceptTcpClient();
                     var client = new RemoteClient(this, tcpClient);
                     client.StartConnect();
-                    _clients.Add(client);
+                    ClientsCollection.Add(client);
                 }
                 catch (SocketException ex)
                 {

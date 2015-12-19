@@ -50,6 +50,7 @@
     <Compile Include="BaseClient.cs" />
     <Compile Include="BaseSender.cs" />
     <Compile Include="BinaryDataManager.cs" />
+    <Compile Include="ClientsCollection.cs" />
     <Compile Include="Client\Client.cs" />
     <Compile Include="ConnectConfiguration.cs" />
     <Compile Include="ContentSenderTls.cs" />

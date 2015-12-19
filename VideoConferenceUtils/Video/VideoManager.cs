@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -69,20 +70,23 @@ namespace VideoConferenceUtils.Video
         /// <returns>Фрагмент видео, null - если нет видео, подходящего под текущее время</returns>
         public KeyValuePair<DateTime, IDataFragment> GetAndRemoveLocalFragment(DateTime currentTime)
         {
-            foreach (var item in _localImages.Items)
+            lock (_localImages)
             {
-                if (item.Key > currentTime ||
-                    item.Key + TimeSpan.FromMilliseconds(Constants.FragmentLenght) < currentTime)
-                    continue;
-                var videoFragment = item;
-                _localImages.Remove(item.Key);
-                _failCount = 0;
-                return videoFragment;
-            }
+                foreach (var item in _localImages.Items)
+                {
+                    if (item.Key > currentTime ||
+                        item.Key + TimeSpan.FromMilliseconds(Constants.FragmentLenght) < currentTime)
+                        continue;
+                    var videoFragment = item;
+                    _localImages.Remove(item.Key);
+                    _failCount = 0;
+                    return videoFragment;
+                }
 
-            if (_failCount++ > 10)
-                _localImages.Clear();
-            return new KeyValuePair<DateTime, IDataFragment>();
+                if (_failCount++ > 10)
+                    _localImages.Clear();
+                return new KeyValuePair<DateTime, IDataFragment>();
+            }
         }
 
         /// <summary>
@@ -101,7 +105,10 @@ namespace VideoConferenceUtils.Video
             //Позже можно будет настраивать
             var devicesCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if (devicesCollection.Count == 0)
-                throw new Exception("Нет вебки");
+            {
+                MessageBoxHelper.ShowMessage("Отсутствует записывающее видеоустройство. Возможны только аудиозвонки.");
+                return;
+            }
 
             _videoRecorder = new VideoRecorder(devicesCollection[0].MonikerString);
             _videoRecorder.NewFrame += videoRecorder_NewFrame;
